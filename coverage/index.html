@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-07-16T16:03:46-06:00">2019-07-16T16:03:46-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-07-16T16:05:43-06:00">2019-07-16T16:05:43-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>17</b> files in total.
-    <b>49</b> relevant lines. 
-    <span class="green"><b>49</b> lines covered</span> and
+    <b>46</b> relevant lines. 
+    <span class="green"><b>46</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -71,11 +71,11 @@
       </tr>
       
       <tr>
-        <td class="strong"><a href="#56390fa1b55a4ff3c2d8577dd911fa3cf51ce0d9" class="src_link" title="app/models/contact.rb">app/models/contact.rb</a></td>
+        <td class="strong"><a href="#f9dae4e868115d5a67c4a1a1a598237947cf067a" class="src_link" title="app/models/dead_man_switch.rb">app/models/dead_man_switch.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>8</td>
         <td>5</td>
-        <td>5</td>
+        <td>2</td>
+        <td>2</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -304,13 +304,13 @@
 </div>
 
       
-        <div class="source_table" id="56390fa1b55a4ff3c2d8577dd911fa3cf51ce0d9">
+        <div class="source_table" id="f9dae4e868115d5a67c4a1a1a598237947cf067a">
   <div class="header">
-    <h3>app/models/contact.rb</h3>
+    <h3>app/models/dead_man_switch.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>5</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
+      <b>2</b> relevant lines. 
+      <span class="green"><b>2</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -321,7 +321,7 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class Contact &lt; ApplicationRecord</code>
+          <code class="ruby">class DeadManSwitch &lt; ApplicationRecord</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="2">
@@ -333,34 +333,16 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates_presence_of :first_name</code>
+          <code class="ruby">  validates_presence_of :length_of_time</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="4">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="4">
           
-          <code class="ruby">  validates_presence_of :last_name</code>
+          
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  validates_presence_of :phone</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="6">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  validates_presence_of :email</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="7">
-          
-          
-          <code class="ruby">  </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
+        <li class="never" data-hits="" data-linenumber="5">
           
           
           <code class="ruby">end</code>

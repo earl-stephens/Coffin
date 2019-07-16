@@ -221,12 +221,9 @@
         1,
         null
       ],
-      "/Users/bp/turing/3module/projects/Coffin/app/models/contact.rb": [
+      "/Users/bp/turing/3module/projects/Coffin/app/models/dead_man_switch.rb": [
         1,
         null,
-        1,
-        1,
-        1,
         1,
         null,
         null
@@ -237,6 +234,6 @@
         null
       ]
     },
-    "timestamp": 1563314626
+    "timestamp": 1563314743
   }
 }
