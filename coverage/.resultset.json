@@ -221,26 +221,6 @@
         1,
         null
       ],
-      "/Users/bp/turing/3module/projects/Coffin/app/models/employer.rb": [
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null
-      ],
-      "/Users/bp/turing/3module/projects/Coffin/app/models/application_record.rb": [
-        1,
-        1,
-        null
-      ],
       "/Users/bp/turing/3module/projects/Coffin/app/models/user.rb": [
         1,
         null,
@@ -257,10 +237,97 @@
         1,
         1,
         1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/bp/turing/3module/projects/Coffin/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/bp/turing/3module/projects/Coffin/app/models/funeral.rb": [
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/bp/turing/3module/projects/Coffin/app/models/financial_account.rb": [
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/bp/turing/3module/projects/Coffin/app/models/contact.rb": [
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/bp/turing/3module/projects/Coffin/app/models/dead_man_switch.rb": [
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/bp/turing/3module/projects/Coffin/app/models/employer.rb": [
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
         null,
         null
       ]
     },
-    "timestamp": 1563319734
+    "timestamp": 1563319919
   }
 }

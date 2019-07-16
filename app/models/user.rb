@@ -13,5 +13,7 @@ class User < ApplicationRecord
   has_many :contacts
   has_one :dead_man_switch
   has_one :employer
+  has_one :funeral
+
 
 end

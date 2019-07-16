@@ -5,6 +5,10 @@ RSpec.describe Funeral do
     it { should validate_presence_of :burial_cremation }
   end
 
+  describe 'relationships' do
+    it { should belong_to :user }
+  end
+
   describe  'enums' do
     before :each do
       @funeral = Funeral.create(burial_cremation: 0)

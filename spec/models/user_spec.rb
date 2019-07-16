@@ -13,6 +13,7 @@ RSpec.describe User do
     it { should have_many :contacts }
     it { should have_one :dead_man_switch }
     it { should have_one :employer }
+    it { should have_one :funeral }
 
   end
 end
