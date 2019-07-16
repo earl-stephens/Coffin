@@ -221,10 +221,9 @@
         1,
         null
       ],
-      "/Users/bp/turing/3module/projects/Coffin/app/models/employer.rb": [
+      "/Users/bp/turing/3module/projects/Coffin/app/models/financial_account.rb": [
         1,
         null,
-        1,
         1,
         1,
         null,
@@ -236,6 +235,6 @@
         null
       ]
     },
-    "timestamp": 1563315338
+    "timestamp": 1563315510
   }
 }
