@@ -7,4 +7,8 @@ RSpec.describe User do
     it { should validate_presence_of :email }
     it { should validate_presence_of :phone }
   end
+
+  describe 'relationships' do
+    it { should have_many :financial_accounts }
+  end
 end
