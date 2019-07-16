@@ -6,4 +6,8 @@ RSpec.describe Employer do
     it { should validate_presence_of :employer_contact }
     it { should validate_presence_of :phone }
   end
+
+  describe  'relationships' do
+    it { should belong_to :user }
+  end
 end

@@ -12,5 +12,6 @@ class User < ApplicationRecord
   has_many :financial_accounts
   has_many :contacts
   has_one :dead_man_switch
+  has_one :employer
 
 end
