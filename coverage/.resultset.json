@@ -221,14 +221,12 @@
         1,
         null
       ],
-      "/Users/bp/turing/3module/projects/Coffin/app/models/contact.rb": [
+      "/Users/bp/turing/3module/projects/Coffin/app/models/funeral.rb": [
         1,
         null,
         1,
-        1,
-        1,
-        1,
         null,
+        1,
         1,
         null,
         null
@@ -239,6 +237,6 @@
         null
       ]
     },
-    "timestamp": 1563318314
+    "timestamp": 1563318813
   }
 }
