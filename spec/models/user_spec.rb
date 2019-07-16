@@ -10,5 +10,6 @@ RSpec.describe User do
 
   describe 'relationships' do
     it { should have_many :financial_accounts }
+    it { should have_many :contacts }
   end
 end

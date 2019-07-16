@@ -10,5 +10,6 @@ class User < ApplicationRecord
   # relationships
 
   has_many :financial_accounts
+  has_many :contacts
 
 end

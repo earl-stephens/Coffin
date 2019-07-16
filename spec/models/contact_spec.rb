@@ -8,6 +8,10 @@ RSpec.describe Contact do
     it { should validate_presence_of :phone }
   end
 
+  describe 'relationships' do
+    it { should belong_to :user }
+  end
+
   describe 'enums' do
     before :each do
       @contact = Contact.create(first_name: 'First', last_name: 'Last', email: 'user@email.com', phone: '1111111111')
