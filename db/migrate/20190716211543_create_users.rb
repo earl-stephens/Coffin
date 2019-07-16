@@ -6,11 +6,10 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :phone
       t.string :address
-      t.integer :role
-      t.boolean :organ_donor
+      t.boolean :organ_donor, default: false
       t.string :place_of_birth
       t.string :maiden_name
-      t.boolean :deceased
+      t.boolean :deceased, default: false
 
       t.timestamps
     end

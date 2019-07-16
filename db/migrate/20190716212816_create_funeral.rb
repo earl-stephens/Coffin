@@ -6,10 +6,10 @@ class CreateFuneral < ActiveRecord::Migration[5.2]
       t.string :funeral_home_phone
       t.string :funeral_home_address
       t.integer :type_of_service
-      t.boolean :plot_purchased
-      t.boolean :coffin_or_urn_purchased
-      t.boolean :package_purchased
-      t.boolean :docs_or_contract_exist
+      t.boolean :plot_purchased, default: false
+      t.boolean :coffin_or_urn_purchased, default: false
+      t.boolean :package_purchased, default: false
+      t.boolean :docs_or_contract_exist, default: false
       t.references :user, foreign_key: true
 
       t.timestamps

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_213304) do
     t.string "last_name"
     t.string "email"
     t.string "phone"
-    t.integer "role"
+    t.integer "role", default: 0
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,10 +62,10 @@ ActiveRecord::Schema.define(version: 2019_07_16_213304) do
     t.string "funeral_home_phone"
     t.string "funeral_home_address"
     t.integer "type_of_service"
-    t.boolean "plot_purchased"
-    t.boolean "coffin_or_urn_purchased"
-    t.boolean "package_purchased"
-    t.boolean "docs_or_contract_exist"
+    t.boolean "plot_purchased", default: false
+    t.boolean "coffin_or_urn_purchased", default: false
+    t.boolean "package_purchased", default: false
+    t.boolean "docs_or_contract_exist", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,11 +78,10 @@ ActiveRecord::Schema.define(version: 2019_07_16_213304) do
     t.string "email"
     t.string "phone"
     t.string "address"
-    t.integer "role"
-    t.boolean "organ_donor"
+    t.boolean "organ_donor", default: false
     t.string "place_of_birth"
     t.string "maiden_name"
-    t.boolean "deceased"
+    t.boolean "deceased", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
