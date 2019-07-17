@@ -22,27 +22,27 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Configure Bundler
-        command: |
-          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-          source $BASH_ENV
-          gem install bundler
-          bundle install
+          name: Configure Bundler
+          command: |
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+            bundle install
       - run:
-        name: db setup
-        command: |
-          bundle exec rake db:create
-          bundle exec rake db:migrate
-          bundle exec rake db:seed
+          name: db setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:migrate
+            bundle exec rake db:seed
       - run:
-        name: rpsec testing
-        command: |
-          mkdir -p /tmp/test-results
-          bundle exec rspec --profile 10 \
-                          --format RspecJunitFormatter \
-                          --out /tmp/test-results/rspec.xml \
-                          --format progress \
-                          $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+          name: rpsec testing
+          command: |
+            mkdir -p /tmp/test-results
+            bundle exec rspec --profile 10 \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
       - store_test_results:
           path: /tmp/test-results
       # - run:
