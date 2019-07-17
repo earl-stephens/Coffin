@@ -9,5 +9,3 @@ RSpec.describe 'As a visitor' do
     end
   end
 end
-
-# expect(current_path).to eq('/auth/google_oauth2')
