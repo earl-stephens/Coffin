@@ -20,12 +20,12 @@ RSpec.describe 'as a visitor' do
       expect(page).to have_content('Frequently Asked Questions')
     end
 
-    # it 'can visit the home page' do
-    #   visit about_path
+    it 'can visit the home page' do
+      visit about_path
 
-    #   click_link 'Home'
-    #   expect(current_path).to eq(root_path)
-    #   expect(page).to have_content('Welcome to Coffin')
-    # end
+      click_link 'Home'
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content('Welcome to Coffin')
+    end
   end
 end
