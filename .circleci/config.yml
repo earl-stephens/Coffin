@@ -33,7 +33,6 @@ jobs:
           command: |
             bundle exec rake db:create
             bundle exec rake db:migrate
-            bundle exec rake db:seed
       - run:
           name: rpsec testing
           command: |
