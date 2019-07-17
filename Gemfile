@@ -45,6 +45,7 @@ group :development, :test do
   gem 'launchy'
   gem 'shoulda-matchers'
   gem 'simplecov'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
