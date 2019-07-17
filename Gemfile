@@ -49,6 +49,9 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'rspec_junit_formatter'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'webdrivers', '~> 4.0'
 end
 
 group :development do

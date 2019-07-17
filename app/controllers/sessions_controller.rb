@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
 
     if user.save
       #session will start here
+      session[:user_id] = user.id
       redirect_to edit_user_path(user)
     else
       flash[:danger] = "Oops! Something went wrong."

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  get 'auth/google_oauth2', to: 'auth#google_oauth'
   # Routes for Google authentication
   get 'auth/google_oauth2/callback', to: 'sessions#googleAuth'
 # get ‘auth/:provider/callback’, to: ‘sessions#googleAuth’
