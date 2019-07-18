@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def googleAuth
-    # Get access tokens from the google server
+    # Gets access tokens from the google server
     auth = request.env["omniauth.auth"]
     user = User.find_or_create_by(google_uid: auth.uid)
     user.first_name = auth.info.first_name
@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
     user.email = auth.info.email
 
     if user.save
-      #session will start here
       session[:user_id] = user.id
       redirect_to edit_user_path(user)
     else
