@@ -4,7 +4,6 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name
   validates_presence_of :last_name
-  validates_presence_of :phone
   validates_presence_of :email
 
   # relationships
@@ -14,6 +13,5 @@ class User < ApplicationRecord
   has_one :dead_man_switch
   has_one :employer
   has_one :funeral
-
 
 end
