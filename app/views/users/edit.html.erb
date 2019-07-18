@@ -1,0 +1,24 @@
+<h1>Basic Information</h1>
+<br>
+<p>You can edit your basic information on this page.</p>
+<br>
+<%= form_for @user do |f| %>
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+
+  <%= f.label :address %>
+  <%= f.text_area :address %>
+
+  <%= f.submit 'Save' %>
+
+<% end %>
