@@ -3,5 +3,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   get '/about', to: 'about#index'
-  
+
+  resources :users, only: [:update, :edit]
+  get '/extra_user_info_edit/:id', to: 'extra_info#edit'
+
 end
