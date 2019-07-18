@@ -3,12 +3,15 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get 'auth/google_oauth2', to: 'auth#google_oauth'
   # Routes for Google authentication
-  get 'auth/google_oauth2/callback', to: 'sessions#googleAuth'
-# get ‘auth/:provider/callback’, to: ‘sessions#googleAuth’
-  get 'auth/failure', to: redirect('/')
-# get ‘auth/failure’, to: redirect(‘/’)
 
-  resources :users, only: [:edit]
+  get 'auth/google_oauth2', to: 'auth#google_oauth'
+  get 'auth/google_oauth2/callback', to: 'sessions#googleAuth'
+  get 'auth/failure', to: redirect('/')
+
+  get '/about', to: 'about#index'
+
+  resources :users, only: [:update, :edit]
+  get '/extra_user_info_edit/:id', to: 'extra_info#edit'
+
 end

@@ -10,6 +10,19 @@
   </head>
 
   <body>
+    <div class="container" id="body-content-no-nav">
+      <% flash.each do |flash_type, flash_message| %>
+      <div class="alert alert-<%= flash_type %>" role="alert"><%= flash_message %></div>
+      <% end %>
+    </div>
+    
+    <section class='nav_bar_links'>
+      <%= link_to 'Login'%>
+      <%= link_to 'Create Account'%>
+      <%= link_to 'About', about_path%>
+      <%= link_to 'Home', root_path%>
+    </section>
     <%= yield %>
+
   </body>
 </html>
