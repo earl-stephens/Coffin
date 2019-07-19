@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_reguser, except: [:new, :create]
 
   def edit
     @user = User.find(params[:id])
@@ -9,6 +10,9 @@ class UsersController < ApplicationController
     user.update(user_params)
     flash[:success] = 'Your details have been successfully saved.'
     redirect_to "/extra_user_info_edit/#{user.id}"
+  end
+
+  def show
   end
 
   private

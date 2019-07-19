@@ -14,4 +14,12 @@ Rails.application.routes.draw do
   resources :users, only: [:update, :edit]
   get '/extra_user_info_edit/:id', to: 'extra_info#edit'
 
+  # User Profile Paths
+  get '/profile', to: 'users#show', as: :profile
+  get '/profile/edit', to: 'users#edit', as: :edit_profile
+  patch '/profile/edit', to: 'users#update'
+
+  # GROUP do we want to namespace this?
+  get '/dashboard', to: 'dashboard#index'
+
 end
