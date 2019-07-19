@@ -25,7 +25,7 @@ RSpec.describe 'authenticated user on new user path', type: :feature do
     new_user.reload
 
     expect(current_path).to eq("/extra_user_info_edit/#{new_user.id}")
-    expect(page).to have_content('Successfully created new user.')
+    expect(page).to have_content('Your details have been successfully saved.')
     expect(new_user.first_name).to eq(first_name)
     expect(new_user.last_name).to eq(last_name)
   end

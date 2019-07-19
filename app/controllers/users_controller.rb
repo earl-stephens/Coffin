@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     user.update(user_params)
-    flash[:success] = 'Successfully created new user.'
+    flash[:success] = 'Your details have been successfully saved.'
     redirect_to "/extra_user_info_edit/#{user.id}"
   end
 

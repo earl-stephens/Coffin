@@ -52,6 +52,7 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'webdrivers', '~> 4.0'
+  gem 'table_print'
 end
 
 group :development do
