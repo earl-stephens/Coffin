@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/ruby:2.6.3-jessie-node
+    - image: circleci/ruby:2.6.3-node
       environment:
         BUNDLE_JOBS: 3
         BUNDLE_RETRY: 3
