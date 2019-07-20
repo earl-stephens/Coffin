@@ -3,6 +3,12 @@ require 'vcr'
 
 RSpec.describe 'As a visitor' do
   describe 'when I visit the welcome path' do
+    it 'I see a link to register' do
+      visit '/'
+
+      expect(page).to have_link('Register using Google')
+    end
+
     context 'and I click link to register using google and complete oauth process' do
       it "I am taken to a form to complete my profile" do
 
