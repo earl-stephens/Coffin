@@ -30,11 +30,11 @@ user3 = User.create!(first_name: 'Jack',
                     organ_donor: true,
                     place_of_birth: 'Anaheim,CA',
                     deceased: true)
-switch1 = DeadMansSwitch.create!(length_of_time: 5.days.from_now,
+switch1 = DeadManSwitch.create!(length_of_time: 5.days.from_now,
                                 user_id: user1.id)
-switch2 = DeadMansSwitch.create!(length_of_time: 6.days.from_now,
+switch2 = DeadManSwitch.create!(length_of_time: 6.days.from_now,
                                 user_id: user2.id)
-switch3 = DeadMansSwitch.create!(length_of_time: 10.days.from_now,
+switch3 = DeadManSwitch.create!(length_of_time: 10.days.from_now,
                                 user_id: user3.id)
 employer1 = Employer.create!(employer_company: 'Colorado Rockies',
                             employer_contact: 'Bill Gates',
