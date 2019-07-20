@@ -12,6 +12,8 @@ RSpec.describe 'authenticated user on new user path', type: :feature do
     phone = '1112223333'
     address = '123 Main Street, Royal City, Naboo, 12345'
 
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(new_user)
+
     visit edit_user_path(new_user)
 
     fill_in :user_first_name, with: first_name
@@ -25,7 +27,7 @@ RSpec.describe 'authenticated user on new user path', type: :feature do
     new_user.reload
 
     expect(current_path).to eq("/extra_user_info_edit/#{new_user.id}")
-    expect(page).to have_content('Your details have been successfully saved.')
+    expect(page).to have_content('Your information has been successfully saved.')
     expect(new_user.first_name).to eq(first_name)
     expect(new_user.last_name).to eq(last_name)
   end

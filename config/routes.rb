@@ -3,11 +3,11 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  # Routes for Google authentication
-
+  # Routes for Google authentication Login and Register
   get 'auth/google_oauth2', to: 'auth#google_oauth'
   get 'auth/google_oauth2/callback', to: 'sessions#googleAuth'
   get 'auth/failure', to: redirect('/')
+  get '/logout', to: 'sessions#destroy', as: :logout
 
   get '/about', to: 'about#index'
 
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # User Profile Paths
   get '/profile', to: 'users#show', as: :profile
-  get '/profile/edit', to: 'users#edit', as: :edit_profile
+  get '/profile/edit', to: 'users#edit'
   patch '/profile/edit', to: 'users#update'
 
   # GROUP do we want to namespace this?

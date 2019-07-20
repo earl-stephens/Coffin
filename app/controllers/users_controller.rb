@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     user.update(user_params)
-    flash[:success] = 'Your details have been successfully saved.'
+    flash[:success] = 'Your information has been successfully saved.'
     redirect_to "/extra_user_info_edit/#{user.id}"
   end
 

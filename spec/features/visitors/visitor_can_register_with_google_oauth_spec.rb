@@ -8,7 +8,7 @@ RSpec.describe 'As a visitor' do
 
       expect(page).to have_link('Register using Google')
     end
-    
+
     context 'and I click link to register using google and complete oauth process' do
       it "I am taken to a form to complete my profile" do
 

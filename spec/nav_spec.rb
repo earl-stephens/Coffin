@@ -30,6 +30,13 @@ RSpec.describe 'Site Nav', type: :feature do
   end
 
   it 'should show proper links for all logged in user' do
+
+    visit root_path
+
+    expect(page).to have_link('Login')
+    expect(page).to have_link('Register using Google')
+    expect(page).to_not have_link('Dashboard')
+
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
     visit root_path
@@ -48,12 +55,5 @@ RSpec.describe 'Site Nav', type: :feature do
 
     click_link 'Logout'
     expect(current_path).to eq(root_path)
-
-    expect(page).to have_link('Login')
-    expect(page).to have_link('Register using Google')
-    expect(page).to_not have_link('Dashboard')
-
-    visit dashboard_path
-    expect(page.status_code).to eq(404)
   end
 end

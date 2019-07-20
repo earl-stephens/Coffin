@@ -13,7 +13,7 @@ require 'vcr'
 require 'webmock/rspec'
 require 'webdrivers'
 require './spec/support/factory_bot'
-
+require 'capybara/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
