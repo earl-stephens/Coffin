@@ -1,28 +1,31 @@
+<!-- app/views/layouts/application.html.erb -->
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Coffin</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+    <%= render '/layouts/nav' %>
+
     <div class="container" id="body-content-no-nav">
       <% flash.each do |flash_type, flash_message| %>
-      <div class="alert alert-<%= flash_type %>" role="alert"><%= flash_message %></div>
+        <% if flash_message.class == Array %>
+          <% flash_message.each do |single_message| %>
+            <div class="alert alert-<%= flash_type %>" role="alert"><%= single_message %></div>
+          <% end %>
+        <% else %>
+          <div class="alert alert-<%= flash_type %>" role="alert"><%= flash_message %></div>
+        <% end %>
       <% end %>
-    </div>
-    
-    <section class='nav_bar_links'>
-      <%= link_to 'Login'%>
-      <%= link_to 'Create Account'%>
-      <%= link_to 'About', about_path%>
-      <%= link_to 'Home', root_path%>
-    </section>
-    <%= yield %>
 
+      <%= yield %>
+    </div>
   </body>
 </html>

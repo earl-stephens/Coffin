@@ -12,7 +12,8 @@ require 'rspec/rails'
 require 'vcr'
 require 'webmock/rspec'
 require 'webdrivers'
-
+require './spec/support/factory_bot'
+require 'capybara/rspec'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -48,6 +49,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
