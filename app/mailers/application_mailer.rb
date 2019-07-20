@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'admin@coffin.us-west-2.elasticbeanstalk.com.com'
   layout 'mailer'
 end
