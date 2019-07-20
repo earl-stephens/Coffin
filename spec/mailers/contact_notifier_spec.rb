@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe ContactNotifierMailer, type: :mailer do
+RSpec.describe ContactNotifierMailer, type: :feature do
   it "can send an email that someone died" do
     user1 = User.create!(first_name: 'John',
                         last_name: 'Doe',
@@ -29,8 +29,8 @@ RSpec.describe ContactNotifierMailer, type: :mailer do
                               role: 1,
                               user_id: user1.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
-    visit notification_path
+    visit '/notification'
 
-    expect(current_path).to eq(report_path)
+    expect(current_path).to eq(reports_path)
   end
 end

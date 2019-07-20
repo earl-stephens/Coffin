@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_one :funeral
 
   def find_primary_contact_email
-    contact = self.contacts.where(contacts: {role: 0})
+    contact = self.contacts.where(contacts: {role: 1})
     contact[0].email
   end
 

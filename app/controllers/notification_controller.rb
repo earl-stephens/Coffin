@@ -1,7 +1,10 @@
-class NotificationController
+class NotificationController < ApplicationController
 
   def index
-    ContactNotifierMailer.death_notice(current_user, params[:email]).deliver_now
+    user = current_user
+    email = current_user.find_primary_contact_email
+    ContactNotifierMailer.death_notice(user, email).deliver_now
+    redirect_to reports_path
   end
 
 end

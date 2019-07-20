@@ -24,5 +24,6 @@ Rails.application.routes.draw do
 
   # notification paths
   get '/notification', to: 'notification#index'
+  get '/reports', to: 'reports#index'
 
 end
