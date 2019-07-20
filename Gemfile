@@ -53,6 +53,7 @@ group :development, :test do
   gem 'webmock'
   gem 'webdrivers', '~> 4.0'
   gem 'table_print'
+  gem 'factory_bot_rails'
 end
 
 group :development do
