@@ -20,6 +20,7 @@
 /node_modules
 /yarn-error.log
 coverage
+/config/application.yml
 
 /public/assets
 .byebug_history
