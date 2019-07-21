@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   get '/extra_user_info/:id', to: 'extra_info#index', as: :extra_info
   get '/edit_extra_user_info/:id', to: 'extra_info#edit', as: :edit_extra_info
 
+  # get '/edit_extra_user_info/:id', to: 'extra_info#edit', as: :edit_extra_info
+  
+  post '/extra_user_info_edit/:id', to: 'extra_info#update', as: :update_info
+
+  # patch 'extra_user_info/:id', to: 'extra_info#update'
+
   # User Profile Paths
   get '/profile', to: 'users#show', as: :profile
   get '/profile/edit', to: 'users#edit'
