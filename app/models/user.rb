@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   # Attachments
 
-  has_one_attached :wil
+  has_one_attached :will
 
   def find_primary_contact_email
     contact = self.contacts.where(contacts: {role: 1})
