@@ -29,7 +29,9 @@ user3 = User.create!(first_name: 'Jack',
                     address: '333 Lodo St, Denver, CO, 80205',
                     organ_donor: true,
                     place_of_birth: 'Anaheim,CA',
-                    deceased: true)
+                    deceased: true,
+                    google_token: 'ya29.GmBMB2NCFa4sJ_vwmsIal22DIPlz6yO8WDZMoUxfeSnloiNTAqRuqQdMSzBrPR1FISgQ1emHP88qz0dhc1mYjodORq7yzZpRco_-pP4hLWWSp-MeULMkHwsh_UQkAW4RHWU',
+                    google_uid: '105963809467861274544')
 switch1 = DeadManSwitch.create!(length_of_time: 5.days.from_now,
                                 user_id: user1.id)
 switch2 = DeadManSwitch.create!(length_of_time: 6.days.from_now,
@@ -103,11 +105,11 @@ contact7 = Contact.create!(first_name: 'Billy',
                           last_name: 'U',
                           email: 'billy@example.com',
                           phone: '1199228833',
-                          role: 1,
+                          role: 0,
                           user_id: user3.id)
 contact8 = Contact.create!(first_name: 'James',
                           last_name: 'Cape',
-                          email: 'jame@example.com',
+                          email: 'sethreader@hotmail.com',
                           phone: '98712376545',
                           role: 1,
                           user_id: user3.id)
