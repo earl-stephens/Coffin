@@ -13,5 +13,6 @@ class SwitchController < ApplicationController
       switch.interval_type == "years"
       length_of_time_for_switch = time + switch.interval.years.seconds.to_i
     end
+    redirect_to dashboard_path(length_of_time_for_switch)
   end
 end
