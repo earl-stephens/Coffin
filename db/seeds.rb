@@ -32,11 +32,11 @@ user3 = User.create!(first_name: 'Jack',
                     deceased: true,
                     google_token: 'ya29.GmBMB2NCFa4sJ_vwmsIal22DIPlz6yO8WDZMoUxfeSnloiNTAqRuqQdMSzBrPR1FISgQ1emHP88qz0dhc1mYjodORq7yzZpRco_-pP4hLWWSp-MeULMkHwsh_UQkAW4RHWU',
                     google_uid: '105963809467861274544')
-switch1 = DeadManSwitch.create!(length_of_time: 5.days.from_now,
+switch1 = DeadManSwitch.create!(interval_in_seconds: -86400,
                                 user_id: user1.id)
-switch2 = DeadManSwitch.create!(length_of_time: 6.days.from_now,
+switch2 = DeadManSwitch.create!(interval_in_seconds: 0,
                                 user_id: user2.id)
-switch3 = DeadManSwitch.create!(length_of_time: 10.days.from_now,
+switch3 = DeadManSwitch.create!(interval_in_seconds: 86400,
                                 user_id: user3.id)
 employer1 = Employer.create!(employer_company: 'Colorado Rockies',
                             employer_contact: 'Bill Gates',

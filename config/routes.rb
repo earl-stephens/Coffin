@@ -29,6 +29,6 @@ Rails.application.routes.draw do
 
   # switch paths
   resources :switch, only: [:update]
-
+  resources :dead_man_switch
 
 end
