@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   # GROUP do we want to namespace this?
   get '/dashboard', to: 'dashboard#index'
 
+  resources :switch, only: [:update]
+
 end
