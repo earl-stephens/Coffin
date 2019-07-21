@@ -29,5 +29,6 @@ module Coffin
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config
   end
 end
