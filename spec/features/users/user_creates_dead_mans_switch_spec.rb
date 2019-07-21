@@ -17,7 +17,7 @@ RSpec.describe 'As a user' do
 
       click_on 'Save'
 
-      expect(@user1.dead_man_switch.interval_in_seconds).to eq(86400)
+      expect(@user1.dead_man_switch.interval_in_seconds).to eq(604800)
     end
   end
 end

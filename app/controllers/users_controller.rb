@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+    # @dead_man_switch = DeadManSwitch.new
   end
 
   private
