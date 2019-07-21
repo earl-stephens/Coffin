@@ -8,6 +8,10 @@ class DeadManSwitchController < ApplicationController
     redirect_to dashboard_path(@length_of_time_for_switch)
   end
 
+  def update
+    redirect_to dashboard_path
+  end
+
   private
 
   def convert_time(params)

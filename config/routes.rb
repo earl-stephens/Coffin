@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/reports', to: 'reports#index'
 
   # switch paths
-  resources :switch, only: [:update]
-  resources :dead_man_switch
+
+  resources :dead_man_switch, only: [:create, :update]
 
 end
