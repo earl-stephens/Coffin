@@ -29,19 +29,19 @@ RSpec.describe User do
                                 last_name: 'Der',
                                 email: 'alex@der.com',
                                 phone: '1012223456',
-                                role: 0,
+                                role: 1,
                                 user_id: user1.id)
       contact2 = Contact.create!(first_name: 'Alex',
                                 last_name: 'Dra',
                                 email: 'alex_dra@example.com',
                                 phone: '4445555555',
-                                role: 1,
+                                role: 0,
                                 user_id: user1.id)
       contact3 = Contact.create!(first_name: 'Mills',
                                 last_name: 'Provosty',
                                 email: 'mills@example.com',
                                 phone: '9990001111',
-                                role: 1,
+                                role: 0,
                                 user_id: user1.id)
 
       contact_email = user1.find_primary_contact_email
