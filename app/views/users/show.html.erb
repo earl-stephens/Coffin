@@ -1,1 +1,8 @@
-<!-- app/views/users/show.html.erb -->
+
+      <%= form_tag dead_man_switch_index_path, method: :post do  %>
+        <%= label_tag :dead_man_switch %>
+        <%= select_tag :interval, options_for_select(intervals) %>
+
+        <%= number_field_tag 'quantity', nil, min: 1 %>
+        <%= submit_tag "Save" %>
+      <% end %>

@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe DeadManSwitch do
   describe 'validations' do
-    it { should validate_presence_of :start_time }
-    it { should validate_presence_of :interval }
-    it { should validate_presence_of :interval_type }
+    it { should validate_presence_of :interval_in_seconds }
   end
 
   describe 'relationships' do

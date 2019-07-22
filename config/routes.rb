@@ -22,13 +22,11 @@ Rails.application.routes.draw do
   # GROUP do we want to namespace this?
   get '/dashboard', to: 'dashboard#index'
 
-
   # notification paths
   get '/notification', to: 'notification#index'
   get '/reports', to: 'reports#index'
 
   # switch paths
-  resources :switch, only: [:update]
-
+  resources :dead_man_switch, only: [:create, :update]
 
 end
