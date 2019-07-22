@@ -1,12 +1,5 @@
 <h1>Upload Files Here</h1>
 
-
-<%# <%= form_with model: @user.will, local: :true, method: :post do |f| %> %>
-  <%# <%= f.label :will %> %>
-  <%# <%= f.file_field :will %> %>
-  <%# <%= f.submit %> %>
-<%# <% end %> %>
-
 <%= form_tag update_info_path do %>
   <%= file_field_tag :will %>
   <%= submit_tag %>
