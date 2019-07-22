@@ -2,7 +2,7 @@ class DeadManSwitchController < ApplicationController
 
   def create
     @length_of_time_for_switch = nil
-    convert_time(params)
+    convert_time(switch_params)
     @user = current_user
     @dead_man_switch = DeadManSwitch.create(user_id: @user.id, interval_in_seconds: @length_of_time_for_switch)
     redirect_to dashboard_path(@length_of_time_for_switch)
@@ -14,7 +14,7 @@ class DeadManSwitchController < ApplicationController
 
   private
 
-  def convert_time(params)
+  def convert_time(switch_params)
     interval_type = params[:interval]
     time = params[:quantity].to_i
     if
@@ -28,6 +28,9 @@ class DeadManSwitchController < ApplicationController
       @length_of_time_for_switch = time.years.seconds.to_i
     end
   end
-  # require.params(:user).permit(:interval, :quantity)
+
+  def switch_params
+    params.permit(:interval, :quantity)
+  end
 
 end
