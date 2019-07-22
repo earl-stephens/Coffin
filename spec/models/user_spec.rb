@@ -48,4 +48,19 @@ RSpec.describe User do
       expect(contact_email).to eq(contact1.email)
     end
   end
+
+  describe 'attachments' do
+    it 'can attach a file' do
+      user = User.create(first_name: 'John',
+                            last_name: 'Doe',
+                            email: 'johndoe@example.com',
+                            phone: '1234567890')
+
+      expect(user.will.attached?).to eq(false)
+
+      user.will.attach(io: File.open("./storage/1TestWill.pdf"), filename: "1TestWill.pdf", content_type: "pdf")
+
+      expect(user.will.attached?).to eq(true)
+    end
+  end
 end
