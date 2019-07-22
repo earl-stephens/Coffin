@@ -13,14 +13,13 @@ RSpec.describe 'as a logged in user' do
       click_link 'Add Information'
 
       expect(current_path).to eq(extra_info_path(user))
-      save_and_open_page
 
       within('.will') do
         click_link 'Add A Will'
       end
 
       expect(current_path).to eq(edit_extra_info_path(user))
-      # expect user.will to eq something?
+      # Not sure how to test past this point
     end
   end
 end
