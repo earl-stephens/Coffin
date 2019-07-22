@@ -3,6 +3,11 @@ require 'vcr'
 
 RSpec.describe 'As a visitor' do
   describe 'when I visit the welcome path' do
+
+    before :each do
+      OmniAuth.config.mock_auth[:google_oauth2] = nil
+    end
+
     it 'I see a link to register' do
       visit '/'
 
@@ -10,6 +15,20 @@ RSpec.describe 'As a visitor' do
     end
 
     context 'and I click link to register using google and complete oauth process' do
+      it "I am not logged in if invalid credentials" do
+
+        visit '/'
+
+        OmniAuth.config.test_mode = true
+
+        OmniAuth.config.mock_auth[:google_oauth2] = :invalid_credentials
+
+            click_link 'Register using Google'
+
+            expect(current_path).to eq(root_path)
+            expect(page).to_not have_content("Logout")
+          end
+
       it "I am taken to a form to complete my profile" do
 
         visit '/'
@@ -30,6 +49,7 @@ RSpec.describe 'As a visitor' do
 
         expect(current_path).to eq(edit_user_path(user))
       end
+
     end
   end
 end
