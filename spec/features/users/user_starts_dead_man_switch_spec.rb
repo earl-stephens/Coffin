@@ -12,9 +12,13 @@ RSpec.describe "As a logged in user" do
       it "I can activate my dead man switch" do
         visit dashboard_path
 
-        expect(page).to have_button("Dead Man's Switch")
+        expect(page).to have_button("I'm Still Alive!")
 
-        click_button("Dead Man's Switch")
+        click_button("I'm Still Alive!")
+        date = @user1.dead_man_switch.updated_at + @user1.dead_man_switch.interval_in_seconds
+        expiration_date = date.strftime('%B %-d, %Y at %l:%M:%S')
+
+        expect(page).to have_content("Your timer has been reset and will expire on #{expiration_date}.")
       end
     end
   end
