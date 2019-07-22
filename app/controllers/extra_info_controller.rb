@@ -1,8 +1,13 @@
 class ExtraInfoController < ApplicationController
 
   def index
-    #current_user?
-    @user = User.find(params['id'])
+    @user = current_user
+    if @user.will.attached?
+      @link = rails_blob_path(@user.will_attachment, disposition: "attachment")
+    end
+  end
+  
+  def show
   end
 
   def edit
@@ -15,17 +20,14 @@ class ExtraInfoController < ApplicationController
 
   def update
     @user = current_user
-    # user = current_user
-    # require 'pry'; binding.pry
-    # @user.will.attach(File.open('./storage/TestWill.pdf'))
-    # @user.will.attach(params)
+    @user.will.attach(params[:will])
     redirect_to profile_path
   end
 
   private
 
     def upload_params
-      params.permit(:will, :authenticity_token, :utf8, :commit, :id)
+      params.permit(:will)
     end
 
 end
