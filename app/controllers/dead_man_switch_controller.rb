@@ -5,10 +5,14 @@ class DeadManSwitchController < ApplicationController
     convert_time(switch_params)
     @user = current_user
     @dead_man_switch = DeadManSwitch.create(user_id: @user.id, interval_in_seconds: @length_of_time_for_switch)
+    flash[:message] = "Click on Dead Man's Switch to activate."
     redirect_to dashboard_path(@length_of_time_for_switch)
   end
 
   def update
+    @user = current_user
+    @user.dead_man_switch.update(updated_at: Time.now)
+    flash[:message] = "Your switch has been set. Your switch expires on #{expiration_date}."
     redirect_to dashboard_path
   end
 
@@ -31,6 +35,11 @@ class DeadManSwitchController < ApplicationController
 
   def switch_params
     params.permit(:interval, :quantity)
+  end
+
+  def expiration_date
+
+    Time.at(@user.dead_man_switch.interval_in_seconds + Time.now.to_i)
   end
 
 end

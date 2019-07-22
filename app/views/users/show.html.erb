@@ -1,5 +1,5 @@
 
-      <%= form_tag dead_man_switch_index_path(@dead_man_switch), method: :post do  %>
+      <%= form_tag dead_man_switch_index_path, method: :post do  %>
         <%= label_tag :dead_man_switch %>
         <%= select_tag :interval, options_for_select(intervals) %>
 
