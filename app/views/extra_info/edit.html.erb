@@ -1,6 +1,6 @@
 <h1>Upload Files Here</h1>
 
-<%= form_tag update_info_path do %>
+<%= form_tag update_info_path, method: :put, multipart: :true do %>
   <%= file_field_tag :will %>
   <%= submit_tag %>
 <% end %>
