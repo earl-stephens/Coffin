@@ -12,13 +12,11 @@
   </head>
 
   <body>
-
+    
     <%= form_for @contact do |f| %>
-
       <% if @contact.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
         <ul>
           <% @contact.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -26,19 +24,14 @@
         </ul>
       </div>
       <% end %>
-
       <%= f.label :first_name %>
       <%= f.text_field :first_name %>
-
       <%= f.label :last_name %>
       <%= f.text_field :last_name %>
-
       <%= f.label :email %>
       <%= f.email_field :email %>
-
       <%= f.label :phone %>
       <%= f.phone_field :phone %>
-
       <%= f.submit "Add Contact" %>
     <% end %>
 
