@@ -31,7 +31,7 @@ RSpec.describe 'as a logged in user' do
       visit extra_info_path(user)
 
       within '.will' do
-        click_link 'Download Will Here'
+        expect(page).to have_link('Download Will Here')
       end
     end
   end
