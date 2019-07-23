@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   get '/about', to: 'about#index'
 
   resources :users, only: [:update, :edit]
-  get '/extra_user_info_edit/:id', to: 'extra_info#edit'
+
+  # Routes for a users extra information to be uploaded
+  get '/extra_user_info_index/:id', to: 'extra_info#index', as: :extra_info
+  get '/edit_extra_user_info/:id', to: 'extra_info#edit', as: :edit_extra_info
+  put '/extra_user_info_edit/:id', to: 'extra_info#update', as: :update_info
+
 
   # User Profile Paths
   get '/profile', to: 'users#show', as: :profile
@@ -36,3 +41,4 @@ Rails.application.routes.draw do
   resources :dead_man_switch, only: [:create, :update]
 
 end
+
