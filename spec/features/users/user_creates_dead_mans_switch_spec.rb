@@ -31,6 +31,7 @@ RSpec.describe 'As a user' do
       select 'Years', from: :interval
       fill_in 'quantity', with: 1
       click_on 'Save'
+
       expect(@user1.dead_man_switch.interval_in_seconds).to eq(31556952)
     end
   end
