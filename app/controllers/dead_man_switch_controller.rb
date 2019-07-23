@@ -11,7 +11,7 @@ class DeadManSwitchController < ApplicationController
       "user_id": "#{@user.id}"
     }
     data = data.to_json
-    service(data)
+    service_results(data)
     flash[:message] = "Your Dead Man Switch has been created and will expire on #{expiration_date}."
     redirect_to dashboard_path
   end
@@ -28,7 +28,7 @@ class DeadManSwitchController < ApplicationController
       "user_id": "#{@user.id}"
     }
     data = data.to_json
-    service(data)
+    service_results(data)
     flash[:message] = "Your timer has been reset and will expire on #{expiration_date}."
     redirect_to dashboard_path
   end
@@ -61,15 +61,11 @@ class DeadManSwitchController < ApplicationController
     params.permit(:interval, :quantity)
   end
 
-def service(data)
-  response = Faraday.get('http://localhost:4567/timer2.json') do |f|
-    f.body = data
-    f.headers["Content-Type"] = "application/json",
-    f.headers["Content-Length"] = "16"
+  def service
+    @_service ||= SinatraService.new
   end
-  results = JSON.parse(response.body, symbolize_names: true)
-  # binding.pry
 
-end
-
+  def service_results(data)
+    @_service_results ||= service.grab_data(data)
+  end
 end
