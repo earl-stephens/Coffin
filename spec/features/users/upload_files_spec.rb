@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'as a logged in user' do
   context 'on the extra information path' do
-    it 'can upload a will document' do
+    it 'can upload a will document, if none is attached' do
+
       user = User.create(first_name: 'ricky', last_name: 'bobby', email: 'email@email.com', phone: '123')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -17,9 +18,21 @@ RSpec.describe 'as a logged in user' do
       within('.will') do
         click_link 'Add A Will'
       end
+    end
 
-      expect(current_path).to eq(edit_extra_info_path(user))
-      # Not sure how to test past this point
+    it 'can download file when attached' do
+      user = User.create(first_name: 'ricky', last_name: 'bobby', email: 'email@email.com', phone: '123')
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      # this is tested in the user model
+      user.will.attach(io: File.open("./storage/1TestWill.pdf"), filename: "1TestWill.pdf", content_type: "pdf")
+
+      visit extra_info_path(user)
+
+      within '.will' do
+        click_link 'Download Will Here'
+      end
     end
   end
 end
