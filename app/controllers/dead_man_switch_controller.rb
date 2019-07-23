@@ -14,7 +14,7 @@ class DeadManSwitchController < ApplicationController
     @user.dead_man_switch.touch
     @user.dead_man_switch.one_day_message_sent = false
     @user.dead_man_switch.one_hour_message_sent = false
-    flash[:message] = "Your timer has been reset and will expire on #{expiration_date}."
+    flash[:message] = "Your Dead Man Switch has been reset and will expire on #{expiration_date}."
     redirect_to dashboard_path
   end
 
