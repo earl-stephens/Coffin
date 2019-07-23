@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_011113) do
+ActiveRecord::Schema.define(version: 2019_07_21_191139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,9 +31,10 @@ ActiveRecord::Schema.define(version: 2019_07_21_011113) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "interval"
-    t.string "interval_type"
-    t.time "start_time"
+    t.bigint "interval_in_seconds"
+    t.boolean "one_day_message_sent", default: false
+    t.boolean "one_hour_message_sent", default: false
+    t.boolean "expired_message_sent", default: false
     t.index ["user_id"], name: "index_dead_man_switches_on_user_id"
   end
 
