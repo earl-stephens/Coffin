@@ -14,5 +14,6 @@
 //= require activestorage
 //= require_tree .
 
-import Rails from 'rails-ujs';
-Rails.start();
+
+// import Rails from 'rails-ujs';
+// Rails.start();
