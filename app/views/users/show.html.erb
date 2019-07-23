@@ -1,1 +1,15 @@
 <!-- app/views/users/show.html.erb -->
+
+<section class="contacts">
+  <h3>Contacts</h3>
+  <% if @contacts.empty? %>
+    <p>You haven't added any contacts yet.</p>
+  <% else %>
+  <ul>
+    <% @contacts.each do |contact| %>
+      <li><%= contact.first_name %> <%= contact.last_name %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= link_to 'Add A Contact', new_profile_contact_path %>
+</section>

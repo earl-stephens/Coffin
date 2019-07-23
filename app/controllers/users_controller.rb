@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @contacts = current_user.contacts
   end
 
   private
