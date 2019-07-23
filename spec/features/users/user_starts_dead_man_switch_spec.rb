@@ -10,7 +10,7 @@ RSpec.describe "As a logged in user" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
       end
 
-      it "I can reset my dead man switch timer" do
+      xit "I can reset my dead man switch timer" do
         visit dashboard_path
 
         expect(page).to have_button("I'm Still Alive!")
