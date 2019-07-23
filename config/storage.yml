@@ -9,8 +9,8 @@ local:
 
 amazon:
   service: S3
-  access_key_id: "AKIAU4LIFEWJYDBLGX67"
-  secret_access_key: "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"
+  access_key_id: "AKIAU4LIFEWJY4BP44E5"
+  secret_access_key: "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"
   region: "us-west-2"
   bucket: "1903coffin"
 
