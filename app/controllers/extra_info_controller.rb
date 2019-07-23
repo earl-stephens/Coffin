@@ -2,9 +2,6 @@ class ExtraInfoController < ApplicationController
 
   def index
     @user = current_user
-    if @user.will.attached?
-      @will_link = rails_blob_path(@user.will_attachment, disposition: "attachment")
-    end
   end
   
   def show
@@ -15,19 +12,22 @@ class ExtraInfoController < ApplicationController
   end
 
   def create
-    require 'pry'; binding.pry
   end 
 
   def update
     @user = current_user
-    @user.will.attach(params[:will])
+    if params.has_key?('will')
+      @user.will.attach(params['will'])
+    else params.has_key?('finance_records')
+      @user.finance_records.attach(params['finance_records'])
+    end
+      
     redirect_to profile_path
   end
 
   private
 
     def upload_params
-      params.permit(:will)
+      params.permit(:will, :finance_record)
     end
-
 end
