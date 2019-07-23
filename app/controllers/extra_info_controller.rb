@@ -3,7 +3,7 @@ class ExtraInfoController < ApplicationController
   def index
     @user = current_user
     if @user.will.attached?
-      @link = rails_blob_path(@user.will_attachment, disposition: "attachment")
+      @will_link = rails_blob_path(@user.will_attachment, disposition: "attachment")
     end
   end
   
