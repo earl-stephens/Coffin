@@ -9,7 +9,7 @@ RSpec.describe "As a logged in user" do
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
       end
-      
+
       it "I can reset my dead man switch timer" do
         visit dashboard_path
 
@@ -19,7 +19,7 @@ RSpec.describe "As a logged in user" do
         date = @user1.dead_man_switch.updated_at + @user1.dead_man_switch.interval_in_seconds
         expiration_date = date.strftime('%B %-d, %Y at%l:%M:%S')
 
-        expect(page).to have_content("Your timer has been reset and will expire on #{expiration_date}.")
+        expect(page).to have_content("Your Dead Man Switch has been reset and will expire on #{expiration_date}.")
       end
     end
   end
