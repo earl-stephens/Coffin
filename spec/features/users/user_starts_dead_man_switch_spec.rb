@@ -22,5 +22,5 @@ RSpec.describe "As a logged in user" do
         expect(page).to have_content("Your Dead Man Switch has been reset and will expire on")
       end
     end
-  end
+  end 
 end
