@@ -17,6 +17,7 @@ class User < ApplicationRecord
   # Attachments
 
   has_one_attached :will
+  has_many_attached :finance_records
 
   def find_primary_contact_email
     contact = self.contacts.where(contacts: {role: 1})
