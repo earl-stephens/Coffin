@@ -1,5 +1,10 @@
 <h2>Here is the list of all of my sensitve data, I can click a link to upload files</h2>
 
 <section class='will'>
-  <%= link_to 'Add A Will',  edit_extra_info_path(@user)%>
+    <% if @user.will.attached? %>
+    <%= link_to 'Download Will Here', @will_link %>
+    <% else%>
+    <%= link_to 'Add A Will',  edit_extra_info_path(@user)%>
+    <% end%>
 </section>
+
