@@ -38,7 +38,6 @@ Rails.application.routes.draw do
   get '/reports', to: 'reports#index'
 
   # dead_man_switch paths
-  resources :dead_man_switch, only: [:create, :update]
+  resources :dead_man_switch, only: [:create, :update, :destroy]
 
 end
-
