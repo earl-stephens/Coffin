@@ -55,6 +55,7 @@ group :development, :test do
   gem 'webdrivers', '~> 4.0'
   gem 'table_print'
   gem 'factory_bot_rails'
+  gem 'twilio-ruby'
 end
 
 group :development do

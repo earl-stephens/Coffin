@@ -23,18 +23,22 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show', as: :profile
   get '/profile/edit', to: 'users#edit'
   patch '/profile/edit', to: 'users#update'
+  namespace :profile do
+    resources :contacts, only: [:new]
+  end
+
+  # Contact paths (also check contact paths namespaced in profile)
+  resources :contacts, only: [:create]
 
   # GROUP do we want to namespace this?
   get '/dashboard', to: 'dashboard#index'
-
 
   # notification paths
   get '/notification', to: 'notification#index'
   get '/reports', to: 'reports#index'
 
-  # switch paths
-  resources :switch, only: [:update]
-
+  # dead_man_switch paths
+  resources :dead_man_switch, only: [:create, :update]
 
 end
 
