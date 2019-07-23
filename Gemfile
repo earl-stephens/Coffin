@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'figaro'
 gem 'faraday'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,6 +55,7 @@ group :development, :test do
   gem 'webdrivers', '~> 4.0'
   gem 'table_print'
   gem 'factory_bot_rails'
+  gem 'twilio-ruby'
 end
 
 group :development do

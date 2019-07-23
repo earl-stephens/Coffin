@@ -5,6 +5,13 @@ class DeadManSwitchController < ApplicationController
     @user = current_user
     @dead_man_switch = DeadManSwitch.find_or_create_by(user_id: @user.id)
     @dead_man_switch.update(interval_in_seconds: @length_of_time_for_switch)
+    data = {
+      "updated_at": "#{@updated_at}",
+      "interval": "#{@user.dead_man_switch.interval_in_seconds}",
+      "user_id": "#{@user.id}"
+    }
+    data = data.to_json
+    service_results(data)
     flash[:message] = "Your Dead Man Switch has been created and will expire on #{expiration_date}."
     redirect_to dashboard_path
   end
@@ -14,7 +21,19 @@ class DeadManSwitchController < ApplicationController
     @user.dead_man_switch.touch
     @user.dead_man_switch.one_day_message_sent = false
     @user.dead_man_switch.one_hour_message_sent = false
-    flash[:message] = "Your timer has been reset and will expire on #{expiration_date}."
+
+    @updated_at = @user.dead_man_switch.updated_at.to_i
+    data = {
+      "updated_at": "#{@updated_at}",
+      "interval": "#{@user.dead_man_switch.interval_in_seconds}",
+      "user_id": "#{@user.id}"
+    }
+    data = data.to_json
+    service_results(data)
+
+
+    flash[:message] = "Your Dead Man Switch has been reset and will expire on #{expiration_date}."
+
     redirect_to dashboard_path
   end
 
@@ -43,5 +62,13 @@ class DeadManSwitchController < ApplicationController
 
   def switch_params
     params.permit(:interval, :quantity)
+  end
+
+  def service
+    @_service ||= SinatraService.new
+  end
+
+  def service_results(data)
+    @_service_results ||= service.grab_data(data)
   end
 end

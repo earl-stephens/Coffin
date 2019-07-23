@@ -9,11 +9,11 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.update(user_params)
     flash[:success] = 'Your information has been successfully saved.'
-    redirect_to "/extra_user_info_edit/#{user.id}"
+    redirect_to dashboard_path
   end
 
   def show
-    # @dead_man_switch = DeadManSwitch.new
+    @user = current_user
   end
 
   private
