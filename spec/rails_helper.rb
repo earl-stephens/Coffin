@@ -87,3 +87,4 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.filter_sensitive_data('<GOOGLE_TOKEN>') { ENV['GOOGLE_TOKEN'] }
 end
+
