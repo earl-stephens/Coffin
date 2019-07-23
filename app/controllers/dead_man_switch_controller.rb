@@ -21,6 +21,7 @@ class DeadManSwitchController < ApplicationController
     @user.dead_man_switch.touch
     @user.dead_man_switch.one_day_message_sent = false
     @user.dead_man_switch.one_hour_message_sent = false
+
     @updated_at = @user.dead_man_switch.updated_at.to_i
     data = {
       "updated_at": "#{@updated_at}",
@@ -29,10 +30,12 @@ class DeadManSwitchController < ApplicationController
     }
     data = data.to_json
     service_results(data)
-    flash[:message] = "Your timer has been reset and will expire on #{expiration_date}."
+
+
+    flash[:message] = "Your Dead Man Switch has been reset and will expire on #{expiration_date}."
+
     redirect_to dashboard_path
   end
-
 
   private
 
