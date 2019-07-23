@@ -1,10 +1,23 @@
 <h2>Here is the list of all of my sensitve data, I can click a link to upload files</h2>
 
 <section class='will'>
-    <% if @user.will.attached? %>
-    <%= link_to 'Download Will Here', @will_link %>
-    <% else%>
-    <%= link_to 'Add A Will',  edit_extra_info_path(@user)%>
-    <% end%>
+<h2>Will</h2>
+  <% if @user.will.attached? %>
+    <%= link_to 'Download Will Here', rails_blob_path(@user.will_attachment, disposition: "attachment") %>
+  <% else%>
+    <%= link_to 'Add A Will',  edit_extra_info_path(@user, ['will'])%>
+  <% end%>
+</section>
+
+<section class='finance_records'>
+<h2>Financial Records</h2>
+  <ul>
+    <% if @user.finance_records.attached? %>
+      <% @user.finance_records.attachments.each do |attachment| %>
+        <li><%= link_to 'Download Financial Record' , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+    <% end %>
+  </ul>
+    <%= link_to 'Add Financial Record', edit_extra_info_path(@user, ['financial']) %>
 </section>
 
