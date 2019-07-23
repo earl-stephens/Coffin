@@ -15,7 +15,6 @@ RSpec.describe "As a logged in user" do
         expect(page).to have_button("I'm Still Alive!")
 
         click_button("I'm Still Alive!")
-        
 
         expect(page).to have_content("Your Dead Man Switch has been reset and will expire on")
       end
