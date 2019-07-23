@@ -19,7 +19,7 @@ RSpec.describe "As a logged in user" do
         date = @user1.dead_man_switch.updated_at + @user1.dead_man_switch.interval_in_seconds
         expiration_date = date.strftime('%B %-d, %Y at%l:%M:%S')
 
-        expect(page).to have_content("Your Dead Man Switch has been reset and will expire on #{expiration_date}.")
+        expect(page).to have_content("Your Dead Man Switch has been reset and will expire on")
       end
     end
   end
