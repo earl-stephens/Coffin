@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Routes for Google authentication Login and Register
   get 'auth/google_oauth2', to: 'auth#google_oauth'
-  get 'auth/google_oauth2/callback', to: 'sessions#googleAuth'
+  get 'auth/google_oauth2/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get '/logout', to: 'sessions#destroy', as: :logout
 
@@ -28,17 +28,17 @@ Rails.application.routes.draw do
   end
 
   # Contact paths (also check contact paths namespaced in profile)
-  resources :contacts, only: [:create]
+  resources :contacts, only: [:create, :new]
 
   # GROUP do we want to namespace this?
   get '/dashboard', to: 'dashboard#index'
 
   # notification paths
-  get '/notification', to: 'notification#index'
+  get '/notification', to: 'notification#message_sender'
   get '/reports', to: 'reports#index'
 
   # dead_man_switch paths
-  resources :dead_man_switch, only: [:create, :update]
+  resources :dead_man_switch, only: [:create, :update, :destroy]
 
+  match '*path', to: 'application#four_oh_four', via: :all
 end
-
