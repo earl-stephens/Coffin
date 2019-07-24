@@ -23,7 +23,6 @@ class DeadManSwitchController < ApplicationController
     @user.dead_man_switch.touch
     @user.dead_man_switch.update(one_day_message_sent:  false)
     @user.dead_man_switch.update(one_hour_message_sent: false)
-    @user.dead_man_switch.update(expired_message_sent: false)
     @updated_at = @user.dead_man_switch.updated_at.to_i
     data = {
       "updated_at": "#{@updated_at}",
