@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   has_many :financial_accounts
   has_many :contacts
-  has_one :dead_man_switch
+  has_one :dead_man_switch, dependent: :destroy
   has_one :employer
   has_one :funeral
 

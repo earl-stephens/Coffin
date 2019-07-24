@@ -13,7 +13,6 @@ RSpec.describe "As a logged in user" do
         visit profile_path(@user1)
 
         select "Months", from: :interval
-        # select "intervals", from: :interval
         fill_in 'quantity', with: 1
         click_on "Save"
 
@@ -22,8 +21,8 @@ RSpec.describe "As a logged in user" do
         expect(page).to have_button("Cancel Dead Man Switch")
 
         click_button "Cancel Dead Man Switch"
-        save_and_open_page
 
+        @user1.reload
         expect(current_path).to eq(profile_path(@user1))
         expect(page).to have_content("Your switch has been cancelled.")
         expect(@user1.dead_man_switch).to eq(nil)
