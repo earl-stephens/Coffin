@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Routes for Google authentication Login and Register
   get 'auth/google_oauth2', to: 'auth#google_oauth'
-  get 'auth/google_oauth2/callback', to: 'sessions#googleAuth'
+  get 'auth/google_oauth2/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get '/logout', to: 'sessions#destroy', as: :logout
 
