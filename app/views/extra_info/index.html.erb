@@ -137,5 +137,35 @@
   </ul>
 </section>
 
+<section class='tax_info'>
+<h3>Tax Information: (<%= @user.tax_info.attachments.count %>)</h3>
+  <ul>
+    <% if @user.tax_info.attached? %>
+      <% @user.tax_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Tax Information:</label> <%= file_field_tag :tax_info %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+</section>
+
+<section class='obituary'>
+<h3>Obituray Information: (<%= @user.obituary.attachments.count %>)</h3>
+  <ul>
+    <% if @user.obituary.attached? %>
+      <% @user.obituary.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Tax Information:</label> <%= file_field_tag :obituary %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+</section>
+
 
 
