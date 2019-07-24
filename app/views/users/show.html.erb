@@ -26,3 +26,27 @@
   <% end %>
   <%= link_to 'Add A Contact', new_profile_contact_path %>
 </section>
+
+</br>
+<section class='organ_donor'>
+  <h2>Organ Donor</h2>
+    <%= form_for(@user) do |f| %>
+    <%= f.radio_button :organ_donor, 'true' %>
+    <%= f.label :organ_donor, 'Yes', :value => 'true' %>
+    <%= f.radio_button :organ_donor, 'false' %>
+    <%= f.label :organ_donor, 'No', :value => 'false' %></br>
+    <%= f.submit "Update" %>
+  <% end %>
+
+
+
+
+
+
+
+
+
+    <!-- <input type="checkbox" checked data-toggle="toggle"> -->
+
+
+</section>
