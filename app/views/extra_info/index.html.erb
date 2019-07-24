@@ -1,23 +1,75 @@
 <h2>Here is the list of all of my sensitve data, I can click a link to upload files</h2>
 
 <section class='will'>
-<h2>Will</h2>
-  <% if @user.will.attached? %>
-    <%= link_to 'Download Will Here', rails_blob_path(@user.will_attachment, disposition: "attachment") %>
-  <% else%>
-    <%= link_to 'Add A Will',  edit_extra_info_path(@user, ['will'])%>
-  <% end%>
+<h2>Will:</h2>
+  <ul>
+    <% if @user.will.attached? %>
+      <p>You have <%= @user.will.attachments.count %> will uploaded</p>
+        <li><%= link_to @user.will.attachment.blob[:filename], rails_blob_path(@user.will_attachment, disposition: "attachment") %></li>
+    <% else%>
+      <h3>You Can upload a copy of your will here:</h3>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Will File:</label> <%= file_field_tag :will %>
+        <%= submit_tag %>
+      <% end %>
+    <% end%>
+  </ul>
 </section>
+
+<section class='poa'>
+<h2>Power Of Attorney :</h2>
+  <ul>
+    <% if @user.poa.attached? %>
+      <p>You have <%= @user.poa.attachments.count %> Power Of Attorney uploaded</p>
+        <li><%= link_to @user.poa.attachment.blob[:filename], rails_blob_path(@user.poa_attachment, disposition: "attachment") %></li>
+    <% else%>
+      <h3>You Can upload a power of attorney here:</h3>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Power Of Attorney File:</label> <%= file_field_tag :poa %>
+        <%= submit_tag %>
+      <% end %>
+    <% end%>
+  </ul>
+</section>
+
+<section class='birth_certificate'>
+<h2>Birth Certificate :</h2>
+  <ul>
+    <% if @user.birth_certificate.attached? %>
+      <p>You have <%= @user.birth_certificate.attachments.count %> Birth Certificate uploaded</p>
+        <li><%= link_to @user.birth_certificate.attachment.blob[:filename], rails_blob_path(@user.birth_certificate_attachment, disposition: "attachment") %></li>
+    <% else%>
+      <h3>You Can upload a birth certificate here:</h3>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Birth Certificate File:</label> <%= file_field_tag :birth_certificate %>
+        <%= submit_tag %>
+      <% end %>
+    <% end%>
+  </ul>
+</section>
+
+
 
 <section class='finance_records'>
-<h2>Financial Records</h2>
+<h2>Financial Records:</h2>
   <ul>
     <% if @user.finance_records.attached? %>
+    <p>You have <%= @user.finance_records.attachments.count %> financial files uploaded</p>
       <% @user.finance_records.attachments.each do |attachment| %>
-        <li><%= link_to 'Download Financial Record' , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Financial Record File:</label> <%= file_field_tag :finance_records %>
+      <%= submit_tag %>
     <% end %>
-  </ul>
-    <%= link_to 'Add Financial Record', edit_extra_info_path(@user, ['financial']) %>
-</section>
 
+    <% else %>
+    <h3>You Can upload a you finance records here:</h3>
+    <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Financial Record File:</label> <%= file_field_tag :finance_records %>
+
+      <%= submit_tag %>
+    <% end %>
+  <% end %>
+  </ul>
+</section>
