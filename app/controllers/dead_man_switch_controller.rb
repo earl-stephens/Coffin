@@ -37,6 +37,17 @@ class DeadManSwitchController < ApplicationController
     redirect_to notification_path
   end
 
+  def destroy
+    @user = current_user
+    @switch = DeadManSwitch.find(@user.dead_man_switch.id)
+    @switch.destroy
+    flash[:message] = "Your switch has been cancelled."
+
+    redirect_to profile_path(@user)
+  end
+
+
+
   private
 
   def convert_time(switch_params)

@@ -30,4 +30,6 @@ coverage
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore storage.yml for S3 keys
 /config/storage.yml

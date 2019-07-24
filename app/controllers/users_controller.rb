@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.update(user_params)
     flash[:success] = 'Your information has been successfully saved.'
-    redirect_to dashboard_path
+    redirect_to profile_path
   end
 
   def show
@@ -19,6 +19,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone, :address)
+    params.require(:user).permit(:first_name, :last_name, :email, :phone, :address, :organ_donor, :place_of_birth, :maiden_name)
   end
 end
