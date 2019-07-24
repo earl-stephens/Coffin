@@ -3,16 +3,22 @@
 <section class='will'>
 <h2>Will:</h2>
   <ul>
-    <% if @user.will.attached? %>
-      <p>You have <%= @user.will.attachments.count %> will uploaded</p>
-        <li><%= link_to @user.will.attachment.blob[:filename], rails_blob_path(@user.will_attachment, disposition: "attachment") %></li>
-    <% else%>
-      <h3>You Can upload a copy of your will here:</h3>
-      <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file">Will File:</label> <%= file_field_tag :will %>
-        <%= submit_tag %>
+    <% if @user.wills.attached? %>
+    <p>You have <%= @user.wills.attachments.count %> wills uploaded</p>
+      <% @user.wills.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
-    <% end%>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Will:</label> <%= file_field_tag :wills %>
+      <%= submit_tag %>
+    <% end %>
+    
+    <% else %>
+    <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload a will here!:</label> <%= file_field_tag :wills %>
+      <%= submit_tag %>
+    <% end %>
+  <% end %>
   </ul>
 </section>
 
