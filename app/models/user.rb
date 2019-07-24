@@ -37,4 +37,22 @@ class User < ApplicationRecord
     contact[0].email
   end
 
+  def progress
+    counter = 0
+    counter +=1 if wills.attachments != []
+    counter +=1 if powers_of_attorney.attachments != []
+    counter +=1 if birth_certificates.attachments != []
+    counter +=1 if finance_records.attachments != []
+    counter +=1 if misc_files.attachments != []
+    counter +=1 if va_benefits.attachments != []
+    counter +=1 if employment_info.attachments != []
+    counter +=1 if life_insurance.attachments != []
+    counter +=1 if ss_info.attachments != []
+    counter +=1 if tax_info.attachments != []
+    counter +=1 if obituary.attachments != []
+    counter +=1 if last_wishes.attachments != []
+    counter +=1 if funeral_info.attachments != []
+    counter +=1 if pet_info.attachments != []
+    ((counter.to_f / 14.0) * 100).round
+  end
 end
