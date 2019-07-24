@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   end
 
   # Contact paths (also check contact paths namespaced in profile)
-  resources :contacts, only: [:create, :new]
+  resources :contacts, only: [:create]
+  get '/contact_login', to: 'contact_login#edit'
+  patch '/contact_login', to: 'contact_login#update'
 
   # GROUP do we want to namespace this?
   get '/dashboard', to: 'dashboard#index'
