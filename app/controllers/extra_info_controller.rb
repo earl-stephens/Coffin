@@ -36,8 +36,14 @@ class ExtraInfoController < ApplicationController
       @user.ss_info.attach(params['ss_info'])
     elsif params.has_key?('tax_info')
       @user.tax_info.attach(params['tax_info'])
-    else params.has_key?('obituary')
+    elsif params.has_key?('obituary')
       @user.obituary.attach(params['obituary'])
+    elsif params.has_key?('last_wishes')
+      @user.last_wishes.attach(params['last_wishes'])
+    elsif params.has_key?('funeral_info')
+      @user.funeral_info.attach(params['funeral_info'])
+    else params.has_key?('pet_info')
+      @user.pet_info.attach(params['pet_info'])
     end
     redirect_to extra_info_path(@user)
   end
