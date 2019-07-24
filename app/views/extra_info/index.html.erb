@@ -2,10 +2,9 @@
 <p>The information you upload here will be made available for download to your primary contact when you inevitably bite the dust</p>
 
 <section class='misc_files'>
-<h2>Miscellaneous Files:</h2>
+<h2>Miscellaneous Files: (<%= @user.misc_files.attachments.count %>)</h2>
   <ul>
     <% if @user.misc_files.attached? %>
-    <p>You have <%= @user.misc_files.attachments.count %> files uploaded</p>
       <% @user.misc_files.attachments.each do |attachment| %>
       <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
@@ -18,10 +17,9 @@
 </section>
 
 <section class='will'>
-<h2>Will:</h2>
+<h2>Will: (<%= @user.wills.attachments.count %>)</h2>
   <ul>
     <% if @user.wills.attached? %>
-    <p>You have <%= @user.wills.attachments.count %> wills uploaded</p>
       <% @user.wills.attachments.each do |attachment| %>
       <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
@@ -34,10 +32,9 @@
 </section>
 
 <section class='poa'>
-<h2>Power Of Attorney:</h2>
+<h2>Power Of Attorney: (<%= @user.powers_of_attorney.attachments.count %>)</h2>
   <ul>
     <% if @user.powers_of_attorney.attached? %>
-    <p>You have <%= @user.powers_of_attorney.attachments.count %> power of attorney files uploaded</p>
       <% @user.powers_of_attorney.attachments.each do |attachment| %>
       <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
@@ -50,10 +47,9 @@
 </section>
 
 <section class='birth_certificate'>
-<h2>Birth Certificate :</h2>
+<h2>Birth Certificate: (<%= @user.birth_certificates.attachments.count %> )</h2>
   <ul>
     <% if @user.birth_certificates.attached? %>
-      <p>You have <%= @user.birth_certificates.attachments.count %> Birth Certificates uploaded</p>
         <% @user.birth_certificates.attachments.each do |attachment| %>
       <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
@@ -66,7 +62,7 @@
 </section>
 
 <section class='finance_records'>
-<h2>Financial Records:</h2>
+<h2>Financial Records: (<%= @user.finance_records.attachments.count %>)</h2>
   <ul>
     <% if @user.finance_records.attached? %>
     <p>You have <%= @user.finance_records.attachments.count %> financial files uploaded</p>
@@ -82,10 +78,9 @@
 </section>
 
 <section class='va_benefits'>
-<h2>Veterans Benefits:</h2>
+<h2>Veterans Benefits: (<%= @user.va_benefits.attachments.count %>)</h2>
   <ul>
     <% if @user.va_benefits.attached? %>
-    <p>You have <%= @user.va_benefits.attachments.count %> files uploaded</p>
       <% @user.va_benefits.attachments.each do |attachment| %>
       <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
@@ -98,16 +93,15 @@
 </section>
 
 <section class='va_benefits'>
-<h2>Veterans Benefits:</h2>
+<h3>Employment Information: (<%= @user.employment_info.attachments.count %>)</h3>
   <ul>
-    <% if @user.va_benefits.attached? %>
-    <p>You have <%= @user.va_benefits.attachments.count %> files uploaded</p>
-      <% @user.va_benefits.attachments.each do |attachment| %>
+    <% if @user.employment_info.attached? %>
+      <% @user.employment_info.attachments.each do |attachment| %>
       <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
       <% end %>
       <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file">Upload VA Information:</label> <%= file_field_tag :va_benefits %>
+      <label for="file">Upload Employment Information:</label> <%= file_field_tag :employment_info %>
       <%= submit_tag %>
     <% end %>
   </ul>
