@@ -12,7 +12,14 @@
   </head>
 
   <body>
-    
+    <h4>Contact Information</h4>
+    <p>You can use these fields to fill in the information of your contacts.
+    For the role, you can assign the contact to be either primary or
+  secondary.  The person who assign to be a primary contact will someone
+who will have access to the sensitive information that you upload.  This
+would be someone like the executor of your estate.  Contacts who are given
+the role of secondary will receive notifications upon your death, but will
+not have access to your information.</p>
     <%= form_for @contact do |f| %>
       <% if @contact.errors.any? %>
       <div id="error_explanation">
@@ -32,6 +39,8 @@
       <%= f.email_field :email %>
       <%= f.label :phone %>
       <%= f.phone_field :phone %>
+      <%= f.label :role %>
+      <%= f.phone_field :role %>
       <%= f.submit "Add Contact" %>
     <% end %>
 
