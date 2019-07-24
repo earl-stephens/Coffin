@@ -22,11 +22,10 @@ class User < ApplicationRecord
   has_many_attached :finance_records
   has_many_attached :misc_files
   has_many_attached :va_benefits
-  has_many_attached :employer_benefits
+  has_many_attached :employment_info
+  has_many_attached :life_insurance
+  has_many_attached :ss_info
 
-  
-  # employer bens
-  # life insurance policies
   # ss information
   # tax returns
   # obituray
