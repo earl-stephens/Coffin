@@ -25,12 +25,13 @@ class User < ApplicationRecord
   has_many_attached :employment_info
   has_many_attached :life_insurance
   has_many_attached :ss_info
+  has_many_attached :tax_info
+  has_many_attached :obituary
 
-  # ss information
-  # tax returns
-  # obituray
+
   # last sentiments
   # Funeral docs
+  # Pet Arrangments
 
 
   def find_primary_contact_email
