@@ -26,6 +26,21 @@
   <%= link_to 'Add A Contact', new_profile_contact_path %>
 </section>
 
+<section class="funeral-box">
+  <h3>Contacts</h3>
+  <% if @user.funeral.nil? %>
+    <p>You made any funeral arrangements yet.<br/>
+    Add your arrangements in the link below.</p>
+  <% else %>
+  <ul>
+    <p>You have set arrangements with <%= @user.funeral.funeral_home_name %></br>
+    </p>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= link_to 'Add Funeral Arrangement', new_profile_contact_path %>
+</section>
+
 </br>
 <section class='update-profile'>
 <h3>Update Profile</h3>
