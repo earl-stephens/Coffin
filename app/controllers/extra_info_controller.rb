@@ -16,8 +16,8 @@ class ExtraInfoController < ApplicationController
 
   def update
     @user = current_user
-    if params.has_key?('will')
-      @user.will.attach(params['will'])
+    if params.has_key?('wills')
+      @user.wills.attach(params['wills'])
       flash[:success] = "Your new will has been added!"
     elsif params.has_key?('poa')
       @user.poa.attach(params['poa'])
