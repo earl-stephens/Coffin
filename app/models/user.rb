@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   # Attachments
 
-  has_one_attached :will
+  has_many_attached :wills
   has_one_attached :poa
   has_one_attached :birth_certificate
   has_many_attached :finance_records
