@@ -34,10 +34,12 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Reduces boot times through caching; required in config/boot.rb
+# Reduces `boo`t times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'figaro'
 gem 'faraday'
+gem "aws-sdk-s3", require: false
+gem 'whenever', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,6 +56,7 @@ group :development, :test do
   gem 'webdrivers', '~> 4.0'
   gem 'table_print'
   gem 'factory_bot_rails'
+  gem 'twilio-ruby'
 end
 
 group :development do

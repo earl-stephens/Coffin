@@ -1,0 +1,11 @@
+<h1>Upload Files Here</h1>
+
+<%= form_tag update_info_path, method: :put, multipart: :true do %>
+  <% if current_user.will.attached? == false%>
+    <%= file_field_tag :will %>
+  <% elsif params['format'] == 'financial'%>
+    <%= file_field_tag :finance_records %>
+  <% else %>
+  <% end %>
+  <%= submit_tag %>
+<% end %>

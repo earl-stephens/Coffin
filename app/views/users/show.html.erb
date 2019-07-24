@@ -1,8 +1,44 @@
+<!-- app/views/users/show.html.erb -->
+<%= link_to 'Add Information', extra_info_path(current_user) %>
 
-      <%= form_tag dead_man_switch_index_path, method: :post do  %>
-        <%= label_tag :dead_man_switch %>
-        <%= select_tag :interval, options_for_select(intervals) %>
+<section class="profile-box">
+  <h3>Dead Man Switch Timer</h3>
+  <%= form_tag dead_man_switch_index_path, method: :post do  %>
+  <%= label_tag :dead_man_switch %>
+  <%= select_tag :interval, options_for_select(intervals) %>
 
-        <%= number_field_tag 'quantity', nil, min: 1 %>
-        <%= submit_tag "Save" %>
-      <% end %>
+  <%= number_field_tag 'quantity', nil, min: 1 %>
+  <%= submit_tag "Save" %>
+  <% end %>
+</section>
+
+<section class="profile-box">
+  <h3>Contacts</h3>
+  <% if @user.contacts.empty? %>
+    <p>You haven't added any contacts yet.<br/>
+    Add one using the link below and they'll be notified if your Dead Man Switch Timer expires.</p>
+  <% else %>
+  <ul>
+    <% @user.contacts.each do |contact| %>
+      <li><%= contact.first_name %> <%= contact.last_name %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= link_to 'Add A Contact', new_profile_contact_path %>
+</section>
+
+</br>
+<section class='organ_donor'>
+  <h2>Organ Donor</h2>
+    <%= form_for(@user) do |f| %>
+    <%= f.radio_button :organ_donor, 'true' %>
+    <%= f.label :organ_donor, 'Yes', :value => 'true' %>
+    <%= f.radio_button :organ_donor, 'false' %>
+    <%= f.label :organ_donor, 'No', :value => 'false' %></br>
+    <%= f.submit "Update" %>
+  <% end %>
+
+    <!-- <input type="checkbox" checked data-toggle="toggle"> -->
+
+
+</section>

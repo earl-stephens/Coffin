@@ -10,9 +10,16 @@ class User < ApplicationRecord
 
   has_many :financial_accounts
   has_many :contacts
-  has_one :dead_man_switch
+  has_one :dead_man_switch, dependent: :destroy
   has_one :employer
   has_one :funeral
+
+  # Attachments
+
+  has_one_attached :will
+  has_one_attached :poa
+  has_one_attached :birth_certificate
+  has_many_attached :finance_records
 
   def find_primary_contact_email
     contact = self.contacts.where(contacts: {role: 1})
