@@ -32,8 +32,12 @@ class ExtraInfoController < ApplicationController
       @user.employment_info.attach(params['employment_info'])
     elsif params.has_key?('life_insurance')
       @user.life_insurance.attach(params['life_insurance'])
-    else params.has_key?('ss_info')
+    elsif params.has_key?('ss_info')
       @user.ss_info.attach(params['ss_info'])
+    elsif params.has_key?('tax_info')
+      @user.tax_info.attach(params['tax_info'])
+    else params.has_key?('obituary')
+      @user.obituary.attach(params['obituary'])
     end
     redirect_to extra_info_path(@user)
   end
