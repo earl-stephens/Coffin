@@ -2,6 +2,7 @@ class ExtraInfoController < ApplicationController
 
   def index
     @user = current_user
+    @user_progress = @user.progress
   end
   
   def show
