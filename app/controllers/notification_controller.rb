@@ -21,7 +21,7 @@ class NotificationController < ApplicationController
       #   @user.dead_man_switch.update(one_day_message_sent: false)
       #   @user.dead_man_switch.update(one_hour_message_sent: false)
       #   @user.dead_man_switch.update(expired_message_sent: false)
-      if @time_difference <= 86401 && @user.dead_man_switch.one_day_message_sent == false
+      if @time_difference <= 86415 && @user.dead_man_switch.one_day_message_sent == false
         message = @timer_one_day_message
         # TwilioTextMessenger.new(message).call # this is the syntax from Twilio to 'call' the message method
         ContactNotifierMailer.day_warning(@user, @user_email).deliver_now

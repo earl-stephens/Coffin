@@ -12,16 +12,18 @@ class DeadManSwitchController < ApplicationController
     }
     data = data.to_json
     service_results(data)
-    flash[:message] = "Your Dead Man Switch has been created and will expire on #{expiration_date}."
-    redirect_to dashboard_path
+    session[:time_difference] = service_results(data)[:time_difference]
+    session[:formatted_date] = expiration_date
+    # flash[:message] = "Your Dead Man Switch has been created and will expire on #{expiration_date}."
+    redirect_to notification_path
   end
 
   def update
     @user = current_user
     @user.dead_man_switch.touch
-    @user.dead_man_switch.one_day_message_sent = false
-    @user.dead_man_switch.one_hour_message_sent = false
-    @user.expired_message_sent = false
+    @user.dead_man_switch.update(one_day_message_sent:  false)
+    @user.dead_man_switch.update(one_hour_message_sent: false)
+    @user.dead_man_switch.update(expired_message_sent: false)
     @updated_at = @user.dead_man_switch.updated_at.to_i
     data = {
       "updated_at": "#{@updated_at}",
@@ -30,8 +32,9 @@ class DeadManSwitchController < ApplicationController
     }
     data = data.to_json
     session[:time_difference] = service_results(data)[:time_difference]
-    flash[:message] = "Your Dead Man Switch has been reset and will expire on #{expiration_date}."
-    redirect_to dashboard_path
+    session[:formatted_date] = expiration_date
+    # flash[:message] = "Your Dead Man Switch has been reset and will expire on #{expiration_date}."
+    redirect_to notification_path
   end
 
   private
