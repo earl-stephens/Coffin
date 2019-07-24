@@ -34,11 +34,10 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index'
 
   # notification paths
-  get '/notification', to: 'notification#index'
+  get '/notification', to: 'notification#message_sender'
   get '/reports', to: 'reports#index'
 
   # dead_man_switch paths
   resources :dead_man_switch, only: [:create, :update]
 
 end
-

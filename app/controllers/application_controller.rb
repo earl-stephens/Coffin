@@ -15,4 +15,5 @@ class ApplicationController < ActionController::Base
     render file: 'public/404', status: 404 unless current_user
   end
 
+
 end

@@ -21,7 +21,7 @@ class DeadManSwitchController < ApplicationController
     @user.dead_man_switch.touch
     @user.dead_man_switch.one_day_message_sent = false
     @user.dead_man_switch.one_hour_message_sent = false
-
+    @user.expired_message_sent = false
     @updated_at = @user.dead_man_switch.updated_at.to_i
     data = {
       "updated_at": "#{@updated_at}",
@@ -29,11 +29,8 @@ class DeadManSwitchController < ApplicationController
       "user_id": "#{@user.id}"
     }
     data = data.to_json
-    service_results(data)
-
-
+    session[:time_difference] = service_results(data)[:time_difference]
     flash[:message] = "Your Dead Man Switch has been reset and will expire on #{expiration_date}."
-
     redirect_to dashboard_path
   end
 
@@ -63,6 +60,7 @@ class DeadManSwitchController < ApplicationController
   def switch_params
     params.permit(:interval, :quantity)
   end
+
 
   def service
     @_service ||= SinatraService.new
