@@ -6,8 +6,8 @@ class ContactsController < ApplicationController
       flash[:success] = "Your new contact has been added!"
       redirect_to profile_path
     else
-      flash[:danger] = @contact.errors.full_messages
-      render :new
+      flash[:error] = @contact.errors.full_messages
+      redirect_to new_profile_contact_path
     end
   end
 

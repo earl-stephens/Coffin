@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   # Contact paths (also check contact paths namespaced in profile)
-  resources :contacts, only: [:create]
+  resources :contacts, only: [:create, :new]
 
   # GROUP do we want to namespace this?
   get '/dashboard', to: 'dashboard#index'
@@ -40,4 +40,5 @@ Rails.application.routes.draw do
   # dead_man_switch paths
   resources :dead_man_switch, only: [:create, :update, :destroy]
 
+  match '*path', to: 'application#four_oh_four', via: :all
 end
