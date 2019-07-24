@@ -1,6 +1,5 @@
 <!-- app/views/users/show.html.erb -->
 <%= link_to 'Add Information', extra_info_path(current_user) %>
-
 <section class="profile-box">
   <h3>Dead Man Switch Timer</h3>
   <%= form_tag dead_man_switch_index_path, method: :post do  %>
@@ -28,15 +27,27 @@
 </section>
 
 </br>
-<section class='organ_donor'>
-  <h2>Organ Donor</h2>
+<section class='update-profile'>
+<h3>Update Profile</h3>
     <%= form_for(@user) do |f| %>
-    <%= f.radio_button :organ_donor, 'true' %>
-    <%= f.label :organ_donor, 'Yes', :value => 'true' %>
-    <%= f.radio_button :organ_donor, 'false' %>
-    <%= f.label :organ_donor, 'No', :value => 'false' %></br>
-    <%= f.submit "Update" %>
-  <% end %>
+    <p>Organ Donor
+      <%= f.radio_button :organ_donor, 'true' %>
+      <%= f.label :organ_donor, 'Yes', :value => 'true' %>
+
+      <%= f.radio_button :organ_donor, 'false' %>
+      <%= f.label :organ_donor, 'No', :value => 'false' %>
+    </p>
+
+      <%= f.label :place_of_birth %>
+      <%= f.text_field :place_of_birth %>
+    </br>
+
+      <%= f.label :maiden_name %>
+      <%= f.text_field :maiden_name %>
+    </br>
+      <%= f.submit "Update" %>
+
+    <% end %>
 
     <!-- <input type="checkbox" checked data-toggle="toggle"> -->
 
