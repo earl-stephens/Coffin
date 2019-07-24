@@ -18,22 +18,22 @@ class ExtraInfoController < ApplicationController
     @user = current_user
     if params.has_key?('wills')
       @user.wills.attach(params['wills'])
-      flash[:success] = "Your new will has been added!"
     elsif params.has_key?('powers_of_attorney')
       @user.powers_of_attorney.attach(params['powers_of_attorney'])
-      flash[:success] = "Your new power of attorney has been added!"
     elsif params.has_key?('birth_certificates')
       @user.birth_certificates.attach(params['birth_certificates'])
-      flash[:success] = "Your new birth certificate has been added!"
     elsif params.has_key?('finance_records')
       @user.finance_records.attach(params['finance_records'])
-      flash[:success] = "Your new financial record has been added!"
     elsif params.has_key?('misc_files')
       @user.misc_files.attach(params['misc_files'])
-      flash[:success] = "Your new file has been added!"
-    else params.has_key?('va_benefits')
+    elsif params.has_key?('va_benefits')
       @user.va_benefits.attach(params['va_benefits'])
-      flash[:success] = "Your VA file has been added!"
+    elsif params.has_key?('employment_info')
+      @user.employment_info.attach(params['employment_info'])
+    elsif params.has_key?('life_insurance')
+      @user.life_insurance.attach(params['life_insurance'])
+    else params.has_key?('ss_info')
+      @user.ss_info.attach(params['ss_info'])
     end
     redirect_to extra_info_path(@user)
   end
