@@ -17,6 +17,8 @@ class User < ApplicationRecord
   # Attachments
 
   has_one_attached :will
+  has_one_attached :poa
+  has_one_attached :birth_certificate
   has_many_attached :finance_records
 
   def find_primary_contact_email
