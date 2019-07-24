@@ -1,0 +1,53 @@
+</br>
+</br>
+<%= form_for [@user, @funeral] do |f| %>
+  <%= f.select :burial_cremation, options_for_select(funeral_type) %>
+  </br>
+  </br>
+  <%= f.label :funeral_home_name %>
+  <%= f.text_field :funeral_home_name %>
+  </br>
+  </br>
+  <%= f.label :funeral_home_phone %>
+  <%= f.text_field :funeral_home_phone %>
+  </br>
+  </br>
+  <%= f.label :funeral_home_address %>
+  <%= f.text_field :funeral_home_address %>
+  </br>
+  </br>
+  <%= f.select :type_of_service, options_for_select(type_of_service) %>
+  </br>
+  </br>
+  <p>Plot Purchased?
+  <%= f.radio_button :plot_purchased, 'true' %>
+  <%= f.label :plot_purchased, 'Yes', :value => 'true' %>
+
+  <%= f.radio_button :plot_purchased, 'false' %>
+  <%= f.label :plot_purchased, 'No', :value => 'false' %>
+  </p>
+
+  <p>Coffin or Urn Purchased?
+  <%= f.radio_button :coffin_or_urn_purchased, 'true' %>
+  <%= f.label :coffin_or_urn_purchased, 'Yes', :value => 'true' %>
+
+  <%= f.radio_button :coffin_or_urn_purchased, 'false' %>
+  <%= f.label :coffin_or_urn_purchased, 'No', :value => 'false' %>
+  </p>
+
+  <p>Funeral Package Purchased?
+  <%= f.radio_button :package_purchased, 'true' %>
+  <%= f.label :package_purchased, 'Yes', :value => 'true' %>
+
+  <%= f.radio_button :package_purchased, 'false' %>
+  <%= f.label :package_purchased, 'No', :value => 'false' %>
+  </p>
+
+  <p>Documentation or Contract for Funeral Arrangement?
+  <%= f.radio_button :docs_or_contract_exist, 'true' %>
+  <%= f.label :docs_or_contract_exist, 'Yes', :value => 'true' %>
+
+  <%= f.radio_button :docs_or_contract_exist, 'false' %>
+  <%= f.label :docs_or_contract_exist, 'No', :value => 'false' %>
+  </p>
+<% end %>

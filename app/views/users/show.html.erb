@@ -1,5 +1,7 @@
 <!-- app/views/users/show.html.erb -->
 <%= link_to 'Add Information', extra_info_path(current_user) %>
+</br>
+</br>
 <section class="profile-box">
   <h3>Dead Man Switch Timer</h3>
   <%= form_tag dead_man_switch_index_path, method: :post do  %>
@@ -10,7 +12,7 @@
   <%= submit_tag "Save" %>
   <% end %>
 </section>
-
+</br>
 <section class="profile-box">
   <h3>Contacts</h3>
   <% if @user.contacts.empty? %>
@@ -25,20 +27,19 @@
   <% end %>
   <%= link_to 'Add A Contact', new_profile_contact_path %>
 </section>
-
+</br>
 <section class="funeral-box">
-  <h3>Contacts</h3>
+  <h3>Funeral Arrangements</h3>
   <% if @user.funeral.nil? %>
     <p>You made any funeral arrangements yet.<br/>
     Add your arrangements in the link below.</p>
   <% else %>
-  <ul>
-    <p>You have set arrangements with <%= @user.funeral.funeral_home_name %></br>
-    </p>
-    <% end %>
+    <ul>
+      <p>You have set arrangements with <%= @user.funeral.funeral_home_name %></br>
+      </p>
   </ul>
   <% end %>
-  <%= link_to 'Add Funeral Arrangement', new_profile_contact_path %>
+  <%= link_to 'Add Funeral Arrangement', new_user_funeral_path(@user) %>
 </section>
 
 </br>
