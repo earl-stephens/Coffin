@@ -1,7 +1,7 @@
 </br>
 </br>
 <%= form_for [@user, @funeral] do |f| %>
-  <%= f.select :burial_cremation, options_for_select(funeral_type) %>
+  <%= f.select :burial_cremation, options_for_select(burial_cremation) %>
   </br>
   </br>
   <%= f.label :funeral_home_name %>
@@ -50,4 +50,6 @@
   <%= f.radio_button :docs_or_contract_exist, 'false' %>
   <%= f.label :docs_or_contract_exist, 'No', :value => 'false' %>
   </p>
+
+  <%= f.submit 'Update' %>
 <% end %>

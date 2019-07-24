@@ -7,7 +7,7 @@ module ApplicationHelper
     ]
   end
 
-  def funeral_type
+  def burial_cremation
     [
       ['Burial'],
       ['Cremation']
