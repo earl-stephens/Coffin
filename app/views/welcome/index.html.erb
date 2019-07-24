@@ -1,9 +1,18 @@
-<h1>Welcome to Coffin</h1>
-<p>Here is our welcoming message... Welcome to Coffin, that is all for now</p>
-
+<h1 class="text-center">Welcome to Coffin</h1>
+<p class="text-center">Here is our welcoming message... Welcome to Coffin, that is all for now</p>
+<br>
 <% unless current_user %>
-  <ul>
-    <li><%= link_to 'Register using Google', auth_google_oauth2_path %></li>
-    <li><%= link_to 'Login using Google', auth_google_oauth2_path %></li>
-  </ul>
+  <div class="d-flex">
+    <ul class="list-inline mx-auto justify-content-center">
+      <li><div class="list-inline-item"><%= link_to 'Register using Google', auth_google_oauth2_path %></div></li>
+      <li><div class="list-inline-item"><%= link_to 'Login using Google', auth_google_oauth2_path %></div></li>
+    </ul>
+  </div>
 <% end %>
+<section id="work">
+  <div class="container">
+    <div class="row">
+      <img src="https://i5.walmartimages.com/asr/6d40f6c8-4008-4a1b-a503-a8df5ce8c848_1.a8a0966fd6f7323861d2ba8dc3c3d683.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF" class="img-responsive" alt="Responsive image">
+    </div>
+  </div>
+</section>
