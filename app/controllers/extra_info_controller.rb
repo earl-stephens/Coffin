@@ -51,6 +51,6 @@ class ExtraInfoController < ApplicationController
   private
 
     def upload_params
-      params.permit(:will, :finance_records)
+      params.permit(:will)
     end
 end
