@@ -27,11 +27,9 @@ class User < ApplicationRecord
   has_many_attached :ss_info
   has_many_attached :tax_info
   has_many_attached :obituary
-
-
-  # last sentiments
-  # Funeral docs
-  # Pet Arrangments
+  has_many_attached :last_wishes
+  has_many_attached :funeral_info
+  has_many_attached :pet_info
 
 
   def find_primary_contact_email
