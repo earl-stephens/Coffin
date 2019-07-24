@@ -92,7 +92,7 @@
   </ul>
 </section>
 
-<section class='va_benefits'>
+<section class='employment_info'>
 <h3>Employment Information: (<%= @user.employment_info.attachments.count %>)</h3>
   <ul>
     <% if @user.employment_info.attached? %>
@@ -102,6 +102,36 @@
       <% end %>
       <%= form_tag update_info_path, method: :put, multipart: :true do %>
       <label for="file">Upload Employment Information:</label> <%= file_field_tag :employment_info %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+</section>
+
+<section class='life_insurance'>
+<h3>Life Insurance Information: (<%= @user.life_insurance.attachments.count %>)</h3>
+  <ul>
+    <% if @user.life_insurance.attached? %>
+      <% @user.life_insurance.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Life Insurance Information:</label> <%= file_field_tag :life_insurance %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+</section>
+
+<section class='ss_info'>
+<h3>Social Security Information: (<%= @user.ss_info.attachments.count %>)</h3>
+  <ul>
+    <% if @user.ss_info.attached? %>
+      <% @user.ss_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Social Security Information:</label> <%= file_field_tag :ss_info %>
       <%= submit_tag %>
     <% end %>
   </ul>
