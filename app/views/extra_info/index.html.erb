@@ -161,7 +161,52 @@
       <% end %>
       <% end %>
       <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file">Upload Tax Information:</label> <%= file_field_tag :obituary %>
+      <label for="file">Upload Obituary Information:</label> <%= file_field_tag :obituary %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+</section>
+
+<section class='last_wishes'>
+<h3>Last Wishes Information: (<%= @user.last_wishes.attachments.count %>)</h3>
+  <ul>
+    <% if @user.last_wishes.attached? %>
+      <% @user.last_wishes.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Last Wishes Information:</label> <%= file_field_tag :last_wishes %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+</section>
+
+<section class='funeral_info'>
+<h3>Funeral Information: (<%= @user.funeral_info.attachments.count %>)</h3>
+  <ul>
+    <% if @user.funeral_info.attached? %>
+      <% @user.funeral_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Funeral Information:</label> <%= file_field_tag :funeral_info %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+</section>
+
+<section class='pet_info'>
+<h3>Pet Information: (<%= @user.pet_info.attachments.count %>)</h3>
+  <ul>
+    <% if @user.pet_info.attached? %>
+      <% @user.pet_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Pet Information:</label> <%= file_field_tag :pet_info %>
       <%= submit_tag %>
     <% end %>
   </ul>
