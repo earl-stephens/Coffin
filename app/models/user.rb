@@ -17,9 +17,22 @@ class User < ApplicationRecord
   # Attachments
 
   has_many_attached :wills
-  has_one_attached :poa
-  has_one_attached :birth_certificate
+  has_many_attached :powers_of_attorney
+  has_many_attached :birth_certificates
   has_many_attached :finance_records
+  has_many_attached :misc_files
+  has_many_attached :va_benefits
+  has_many_attached :employer_benefits
+
+  
+  # employer bens
+  # life insurance policies
+  # ss information
+  # tax returns
+  # obituray
+  # last sentiments
+  # Funeral docs
+
 
   def find_primary_contact_email
     contact = self.contacts.where(contacts: {role: 1})
