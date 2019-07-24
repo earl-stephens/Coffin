@@ -4,11 +4,12 @@ class ContactsController < ApplicationController
     @contact[:user_id] = current_user.id
     @user = current_user
     if @contact.save && @contact.role == "primary"
-
       flash[:success] = "Your new contact has been added!"
       redirect_to profile_path
       ContactNotifierMailer.add_contact(@user, @contact).deliver_now
-
+    elsif @contact.save
+      flash[:success] = "Your new contact has been added!"
+      redirect_to profile_path
     else
       flash[:error] = @contact.errors.full_messages
       redirect_to new_profile_contact_path

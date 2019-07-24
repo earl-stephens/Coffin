@@ -8,7 +8,7 @@ class ContactLoginController < ApplicationController
     contact = Contact.find_by(verification_token: params[:verification_token])
     if contact
       contact.update(verified: true)
-      redirect_to reports_path
+      redirect_to report_path(contact)
     else
       flash[:failure] = "Something has gone wrong.  Please reach out to support."
     end
