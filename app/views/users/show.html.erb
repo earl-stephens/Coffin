@@ -4,10 +4,12 @@
 </br>
 <section class="profile-box">
   <h3>Dead Man Switch Timer</h3>
+  <% if current_user.dead_man_switch %>
+    <p>You're all set for now. Your current timer will expire on <%= current_user.dead_man_switch.expires_at_in_time.strftime('%B %-d, %Y')%></p>
+  <% end %>
   <%= form_tag dead_man_switch_index_path, method: :post do  %>
   <%= label_tag :dead_man_switch %>
   <%= select_tag :interval, options_for_select(intervals) %>
-
   <%= number_field_tag 'quantity', nil, min: 1 %>
   <%= submit_tag "Save" %>
   <% end %>
