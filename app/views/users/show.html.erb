@@ -9,7 +9,7 @@
 
   <div id="accordion">
     <div class="card">
-      <div class="card-header" id="headingOne">
+      <div class="card-header">
         <h5 class="mb-0">
           <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             Set or Reset Dead Man Switch Timer
@@ -19,13 +19,6 @@
       <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">
           <ul>
-            <% if @user.misc_files.attached? %>
-              <% @user.misc_files.attachments.each do |attachment| %>
-                <ul class="list-group">
-                  <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
-                </ul>
-              <% end %>
-            <% end %>
             <div class="dead_man_switch_form">
               <%= form_tag dead_man_switch_index_path, method: :post do  %>
               <%= label_tag :dead_man_switch, "Timer Interval" %>
