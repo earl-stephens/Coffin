@@ -1,7 +1,4 @@
 <!-- app/views/users/show.html.erb -->
-<%= link_to 'Upload Files', extra_info_path(current_user) %>
-</br>
-</br>
 <section class="profile-box">
   <h3>Dead Man Switch Timer</h3>
   <% if current_user.dead_man_switch %>
@@ -80,22 +77,21 @@
     <p>Organ Donor
       <%= f.radio_button :organ_donor, 'true' %>
       <%= f.label :organ_donor, 'Yes', :value => 'true' %>
-
       <%= f.radio_button :organ_donor, 'false' %>
       <%= f.label :organ_donor, 'No', :value => 'false' %>
     </p>
-
       <%= f.label :place_of_birth %>
       <%= f.text_field :place_of_birth %>
     </br>
-
       <%= f.label :maiden_name %>
       <%= f.text_field :maiden_name %>
     </br>
       <%= f.submit "Update" %>
 
     <% end %>
-
+  </br>
+  <h3>Additonal Information (Will, Bank Accounts, Last Wishes, etc)</h3>
+  <%= link_to 'Edit Additional Information', extra_info_path(current_user) %>
     <!-- <input type="checkbox" checked data-toggle="toggle"> -->
 
 
