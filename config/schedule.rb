@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-# every 5.minutes do
-#   runner
+# every 1.minute do
+#   command "/Users/earltstephens/turing/1903_3module/projects/Coffin/app/controllers/notification_controller.rb"
 # end

@@ -5,6 +5,7 @@ class NotificationController < ApplicationController
     @contact = current_user.find_primary_contact
     @user_email = @user.email
     @time_difference = session[:time_difference].to_i
+    # binding.pry
       if @time_difference <= 86415 && @user.dead_man_switch.one_day_message_sent == false
         account_sid = ENV['EARLID']
         auth_token = ENV['EARLTOKEN']
@@ -45,7 +46,8 @@ class NotificationController < ApplicationController
         ContactNotifierMailer.death_notice(@user, @contact).deliver_now
         @user.dead_man_switch.update(expired_message_sent: true)
         @user.update(deceased: true)
-      end
       redirect_to dashboard_path
+    end
+
   end
 end

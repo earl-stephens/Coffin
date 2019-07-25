@@ -20,9 +20,13 @@ class DeadManSwitchController < ApplicationController
 
   def update
     @user = current_user
-    @user.dead_man_switch.touch
+    @user.dead_man_switch.update(updated_at: Time.now)
+    @user.dead_man_switch.save
+    # binding.pry
     @user.dead_man_switch.update(one_day_message_sent:  false)
+    @user.dead_man_switch.save
     @user.dead_man_switch.update(one_hour_message_sent: false)
+    @user.dead_man_switch.save
     @updated_at = @user.dead_man_switch.updated_at.to_i
     data = {
       "updated_at": "#{@updated_at}",
@@ -32,6 +36,7 @@ class DeadManSwitchController < ApplicationController
     data = data.to_json
     session[:time_difference] = service_results(data)[:time_difference]
     session[:formatted_date] = expiration_date
+    # binding.pry
     # flash[:message] = "Your Dead Man Switch has been reset and will expire on #{expiration_date}."
     redirect_to notification_path
   end
