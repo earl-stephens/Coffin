@@ -40,7 +40,21 @@
     </div>
   </div>
 </br>
-
+<section class="profile-box">
+  <h3>Contacts</h3>
+  <% if @user.contacts.empty? %>
+  <p>You haven't added any contacts yet.<br/>
+    Add one using the link below and they'll be notified if your Dead Man Switch Timer expires.</p>
+    <% else %>
+    <ul class="list-group list-group-flush">
+      <% @user.contacts.each do |contact| %>
+      <li class="list-group-item"><%= contact.first_name %> <%= contact.last_name %></li>
+      <% end %>
+    </ul>
+    <% end %>
+    <%= link_to 'Add A Contact', new_profile_contact_path %>
+  </section>
+</br>
 <section class="basic-info-box">
 <h3>Basic Info</h3>
 <ul class="list-group list-group-flush">
@@ -77,21 +91,6 @@
     </ul>
   </section>
 
-</section>
-</br>
-<section class="profile-box">
-  <h3>Contacts</h3>
-  <% if @user.contacts.empty? %>
-    <p>You haven't added any contacts yet.<br/>
-    Add one using the link below and they'll be notified if your Dead Man Switch Timer expires.</p>
-  <% else %>
-  <ul class="list-group list-group-flush">
-    <% @user.contacts.each do |contact| %>
-      <li class="list-group-item"><%= contact.first_name %> <%= contact.last_name %></li>
-    <% end %>
-  </ul>
-  <% end %>
-  <%= link_to 'Add A Contact', new_profile_contact_path %>
 </section>
 </br>
 <section class="funeral-box">
