@@ -1,6 +1,7 @@
 <!-- app/views/users/show.html.erb -->
-<%= link_to 'Upload Files', extra_info_path(current_user) %>
 </br>
+<p>Add important files such as your will, power of attorney and any other documents with the link below. These files will be generated in the report for your primary contact.</p>
+<h5><%= link_to 'Upload Files', extra_info_path(current_user) %> </h5>
 </br>
 <section class="profile-box">
   <h3>Dead Man Switch Timer</h3>
@@ -39,7 +40,7 @@
       <p>You have set arrangements with <%= @user.funeral.funeral_home_name %></br>
       </p>
   </ul>
-  <%= link_to 'Update your Funeral Arrangement', new_user_funeral_path(@user) %>
+  <%= link_to 'Update your Funeral Arrangement', edit_user_funeral_path(@user, @funeral) %>
   <% end %>
 </section>
 
