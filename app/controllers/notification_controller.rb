@@ -10,7 +10,7 @@ class NotificationController < ApplicationController
 
   def message_sender
     @user = current_user
-    @email = current_user.find_primary_contact_email
+    @contact = current_user.find_primary_contact
     @user_email = @user.email
     @time_difference = session[:time_difference].to_i
     @timer_one_day_message = "Coffin timer will expire in less than 24 hours."
@@ -34,7 +34,7 @@ class NotificationController < ApplicationController
       elsif @time_difference <= 0 && @user.dead_man_switch.expired_message_sent == false
         message = @timer_expired_message
         # TwilioTextMessenger.new(message).call
-        ContactNotifierMailer.death_notice(@user, @email).deliver_now
+        ContactNotifierMailer.death_notice(@user, @contact).deliver_now
         @user.dead_man_switch.update(expired_message_sent: true)
         @user.update(deceased: true)
       end

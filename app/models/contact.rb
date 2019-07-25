@@ -1,5 +1,6 @@
 class Contact < ApplicationRecord
 
+  before_create :set_verification_token
   # validations
 
   validates_presence_of :first_name
@@ -14,5 +15,11 @@ class Contact < ApplicationRecord
   # relationships
 
   belongs_to :user
+
+  private
+
+  def set_verification_token
+    self.verification_token = SecureRandom.urlsafe_base64.to_s
+  end
 
 end

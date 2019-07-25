@@ -1,3 +1,7 @@
 This is an important message from the Coffin app about
 <%= @user.first_name %> <%= @user.last_name %>.  We regret to inform
-you that <%= @user.first_name %> has passed away.
+you that the timer <%= @user.first_name %> set in the app has expired, and per their wishes
+you have been granted access to their confidential information.  That information
+can be accessed by clicking on the link below.
+
+<%= link_to "Visit Coffin to see #{@user.first_name}'s report", contact_login_url(verification_token: @contact.verification_token) %>
