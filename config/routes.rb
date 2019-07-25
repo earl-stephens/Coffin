@@ -35,7 +35,8 @@ Rails.application.routes.draw do
 
   # notification paths
   get '/notification', to: 'notification#message_sender'
-  get '/reports', to: 'reports#index'
+
+  get '/report', to: 'report#show'
 
   # dead_man_switch paths
   resources :dead_man_switch, only: [:create, :update, :destroy]
