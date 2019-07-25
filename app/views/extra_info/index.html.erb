@@ -19,19 +19,18 @@
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
         <ul>
-    <% if @user.misc_files.attached? %>
-      <% @user.misc_files.attachments.each do |attachment| %>
-      <ul class="list-group">
-            <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
-          </ul>
-      <% end %>
-      
-      <% end %>
-      <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file"></label> <%= file_field_tag :misc_files %>
-      <%= submit_tag 'Upload'%>
-      <%end %>
-  </ul>
+          <% if @user.misc_files.attached? %>
+            <% @user.misc_files.attachments.each do |attachment| %>
+              <ul class="list-group">
+                <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+              </ul>
+            <% end %>
+          <% end %>
+          <%= form_tag update_info_path, method: :put, multipart: :true do %>
+            <label for="file"></label> <%= file_field_tag :misc_files %>
+            <%= submit_tag 'Upload'%>
+          <%end %>
+        </ul>
       </div>
     </div>
   </div>
@@ -47,19 +46,18 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
         <ul>
-    <% if @user.wills.attached? %>
-      <% @user.wills.attachments.each do |attachment| %>
-      <ul class="list-group">
-          <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+          <% if @user.wills.attached? %>
+            <% @user.wills.attachments.each do |attachment| %>
+              <ul class="list-group">
+                <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+              </ul>
+            <% end %>
+            <%= form_tag update_info_path, method: :put, multipart: :true do %>
+              <label for="file"></label><%= file_field_tag :wills %>
+              <%= submit_tag 'Upload'%>
+            <% end %>
+          <% end %>
         </ul>
-    <% end %>
-    <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file"></label><%= file_field_tag :wills %>
-      <%= submit_tag 'Upload'%>
-    <% end %>
-
-  </ul>
-  <% end %>
       </div>
     </div>
   </div>
@@ -122,7 +120,7 @@
     <div class="card-header" id="headingFive">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-          Financial Records: <span class="badge badge-primary badge-pill"><%= @user.finance_records.attachments.count %></span>          
+          Financial Records: <span class="badge badge-primary badge-pill"><%= @user.finance_records.attachments.count %></span>
         </button>
       </h5>
     </div>
@@ -390,4 +388,3 @@
     </div>
   </div>
 </div>
-

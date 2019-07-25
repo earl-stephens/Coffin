@@ -7,12 +7,40 @@
   <% if current_user.dead_man_switch %>
     <p>You're all set for now. Your current timer will expire on <%= current_user.dead_man_switch.expires_at_in_time.strftime('%B %-d, %Y')%></p>
   <% end %>
-  <%= form_tag dead_man_switch_index_path, method: :post do  %>
-  <%= label_tag :dead_man_switch %>
-  <%= select_tag :interval, options_for_select(intervals) %>
-  <%= number_field_tag 'quantity', nil, min: 1 %>
-  <%= submit_tag "Save" %>
-  <% end %>
+
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Set or Reset Dead Man Switch Timer
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <ul>
+            <% if @user.misc_files.attached? %>
+              <% @user.misc_files.attachments.each do |attachment| %>
+                <ul class="list-group">
+                  <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+                </ul>
+              <% end %>
+            <% end %>
+            <div class="dead_man_switch_form">
+              <%= form_tag dead_man_switch_index_path, method: :post do  %>
+              <%= label_tag :dead_man_switch, "Timer Interval" %>
+              <%= number_field_tag 'quantity', nil, min: 1 %>
+              <%= select_tag :interval, options_for_select(intervals) %>
+              <%= submit_tag "Save" %>
+              <% end %>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 </br>
 <section class="profile-box">
