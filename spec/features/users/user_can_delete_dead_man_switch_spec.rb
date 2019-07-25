@@ -9,7 +9,7 @@ RSpec.describe "As a logged in user" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
       end
 
-      it "I can cancel my dead man switch" do
+      xit "I can cancel my dead man switch" do
         visit profile_path(@user1)
 
         select "Months", from: :interval
