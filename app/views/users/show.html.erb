@@ -39,7 +39,7 @@
       <p>You have set arrangements with <%= @user.funeral.funeral_home_name %></br>
       </p>
   </ul>
-  <%= link_to 'Update your Funeral Arrangement', new_user_funeral_path(@user) %>
+  <%= link_to 'Update your Funeral Arrangement', edit_user_funeral_path(@user, @funeral) %>
   <% end %>
 </section>
 
