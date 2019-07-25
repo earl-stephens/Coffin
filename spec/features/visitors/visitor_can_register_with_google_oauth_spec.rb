@@ -49,7 +49,6 @@ RSpec.describe 'As a visitor' do
 
         expect(current_path).to eq(edit_user_path(user))
       end
-
     end
   end
 end
