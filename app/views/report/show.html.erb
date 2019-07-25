@@ -1,0 +1,336 @@
+<h2 class="text-center"><%= @user.first_name %>'s Information:</h2>
+<ul class="list-group list-group-flush" >
+  <li class="list-group-item"><strong>First Name: </strong><%= @user.first_name%></li>
+  <li class="list-group-item"><strong>Last Name: </strong><%= @user.last_name%></li>
+  <li class="list-group-item"><strong>Email: </strong><%= @user.email%></li>
+  <li class="list-group-item"><strong>Address: </strong><%= @user.address%></li>
+</ul>
+
+<h2 class="text-center"><%= @user.first_name %>'s Uploaded Files:</h2>
+
+<div id="accordion">
+<% if @user.misc_files.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Miscellaneous Files: <span class="badge badge-primary badge-pill"><%= @user.misc_files.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <% @user.misc_files.attachments.each do |attachment| %>
+          <ul class="list-group">
+            <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+
+<% if @user.wills.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Will: <span class="badge badge-primary badge-pill"><%= @user.wills.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+    <% if @user.wills.attached? %>
+      <% @user.wills.attachments.each do |attachment| %>
+        <ul class="list-group">
+          <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+        </ul>
+      <% end %>
+    <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.powers_of_attorney.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Power Of Attorney: <span class="badge badge-primary badge-pill"><%= @user.powers_of_attorney.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+    <% if @user.powers_of_attorney.attached? %>
+      <% @user.powers_of_attorney.attachments.each do |attachment| %>
+        <ul class="list-group">
+          <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+        </ul>
+      <% end %>
+    <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.birth_certificates.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Birth Certificate: <span class="badge badge-primary badge-pill"><%= @user.birth_certificates.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+    <% if @user.birth_certificates.attached? %>
+        <% @user.birth_certificates.attachments.each do |attachment| %>
+          <ul class="list-group">
+            <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+        </ul>
+      <% end %>
+    <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.finance_records.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingFive">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          Financial Records: <span class="badge badge-primary badge-pill"><%= @user.finance_records.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+      <div class="card-body">
+    <% if @user.finance_records.attached? %>
+      <p>You have <%= @user.finance_records.attachments.count %> financial files uploaded</p>
+        <% @user.finance_records.attachments.each do |attachment| %>
+          <ul class="list-group">
+            <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+        <% end %>
+      <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.va_benefits.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingSix">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          Veterans Benefits: <span class="badge badge-primary badge-pill"><%= @user.va_benefits.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+      <div class="card-body">
+    <% if @user.va_benefits.attached? %>
+      <% @user.va_benefits.attachments.each do |attachment| %>
+        <ul class="list-group">
+          <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.employment_info.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingSeven">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+          Employment Information: <span class="badge badge-primary badge-pill"><%= @user.employment_info.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+      <div class="card-body">
+    <% if @user.employment_info.attached? %>
+      <% @user.employment_info.attachments.each do |attachment| %>
+        <ul class="list-group">
+          <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+        </ul>
+      <% end %>
+    <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.life_insurance.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingEight">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+          Life Insurance Information: <span class="badge badge-primary badge-pill"><%= @user.life_insurance.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+      <div class="card-body">
+        <% if @user.life_insurance.attached? %>
+          <% @user.life_insurance.attachments.each do |attachment| %>
+            <ul class="list-group">
+              <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.ss_info.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingNine">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+          Social Security Information: <span class="badge badge-primary badge-pill"><%= @user.ss_info.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+      <div class="card-body">
+        <% if @user.ss_info.attached? %>
+          <% @user.ss_info.attachments.each do |attachment| %>
+            <ul class="list-group">
+              <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.tax_info.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingTen">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+        Tax Information: <span class="badge badge-primary badge-pill"><%= @user.tax_info.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
+      <div class="card-body">
+        <% if @user.tax_info.attached? %>
+          <% @user.tax_info.attachments.each do |attachment| %>
+            <ul class="list-group">
+              <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.obituary.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingEleven">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+        Obituray Information: <span class="badge badge-primary badge-pill"><%= @user.obituary.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordion">
+      <div class="card-body">
+        <% if @user.obituary.attached? %>
+          <% @user.obituary.attachments.each do |attachment| %>
+            <ul class="list-group">
+              <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.last_wishes.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingTwelve">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+        Last Wishes Information: <span class="badge badge-primary badge-pill"><%= @user.last_wishes.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordion">
+      <div class="card-body">
+        <% if @user.last_wishes.attached? %>
+          <% @user.last_wishes.attachments.each do |attachment| %>
+            <ul class="list-group">
+              <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.funeral_info.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingThirteen">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+        Funeral Information: <span class="badge badge-primary badge-pill"><%= @user.funeral_info.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen" data-parent="#accordion">
+      <div class="card-body">
+        <% if @user.funeral_info.attached? %>
+          <% @user.funeral_info.attachments.each do |attachment| %>
+            <ul class="list-group">
+              <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <% if @user.pet_info.attached? %>
+  <div class="card">
+    <div class="card-header" id="headingFourteen">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+        Pet Information: <span class="badge badge-primary badge-pill"><%= @user.pet_info.attachments.count %></span>
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen" data-parent="#accordion">
+      <div class="card-body">
+        <% if @user.pet_info.attached? %>
+          <% @user.pet_info.attachments.each do |attachment| %>
+            <ul class="list-group">
+              <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+
