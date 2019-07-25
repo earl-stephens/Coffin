@@ -1,5 +1,7 @@
 <!-- app/views/dashboard/index.html.erb -->
-</br>
+
+<h5>Your Dead Man Switch has been reset and will expire on <%= session[:formatted_date] %></h5>
+
 <%= button_to "I'm Still Alive!", dead_man_switch_path(current_user), method: :patch %></br>
 
 <%= button_to "Cancel Dead Man Switch", dead_man_switch_path(current_user), method: :delete %>

@@ -1,75 +1,363 @@
-<h2>Here is the list of all of my sensitve data, I can click a link to upload files</h2>
+<h2><%= @user.first_name %>'s Extra Information</h2>
+<p>The information you upload here will be made available for download to your primary contact when you inevitably bite the dust</p>
 
-<section class='will'>
-<h2>Will:</h2>
-  <ul>
-    <% if @user.will.attached? %>
-      <p>You have <%= @user.will.attachments.count %> will uploaded</p>
-        <li><%= link_to @user.will.attachment.blob[:filename], rails_blob_path(@user.will_attachment, disposition: "attachment") %></li>
-    <% else%>
-      <h3>You Can upload a copy of your will here:</h3>
+<div class="progress">
+  <div class="bar progress-bar-striped bg-info" role="progressbar" style="width: <%= @user_progress %>%" aria-valuenow="<%= @user_progress %>" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Miscellaneous Files: (<%= @user.misc_files.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+    <% if @user.misc_files.attached? %>
+      <% @user.misc_files.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
       <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file">Will File:</label> <%= file_field_tag :will %>
+      <label for="file">Upload File:</label> <%= file_field_tag :misc_files %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Will: (<%= @user.wills.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+    <% if @user.wills.attached? %>
+      <% @user.wills.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+    <% end %>
+    <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Will:</label><%= file_field_tag :wills %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Power Of Attorney: (<%= @user.powers_of_attorney.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+        <ul>
+    <% if @user.powers_of_attorney.attached? %>
+      <% @user.powers_of_attorney.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+    <% end %>
+    <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Power Of Attorney:</label> <%= file_field_tag :powers_of_attorney %>
+      <%= submit_tag %>
+  <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Birth Certificate: (<%= @user.birth_certificates.attachments.count %> )
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.birth_certificates.attached? %>
+        <% @user.birth_certificates.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+    <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Birth Certificate:</label> <%= file_field_tag :birth_certificates %>
         <%= submit_tag %>
       <% end %>
-    <% end%>
   </ul>
-</section>
+      </div>
+    </div>
+  </div>
 
-<section class='poa'>
-<h2>Power Of Attorney :</h2>
-  <ul>
-    <% if @user.poa.attached? %>
-      <p>You have <%= @user.poa.attachments.count %> Power Of Attorney uploaded</p>
-        <li><%= link_to @user.poa.attachment.blob[:filename], rails_blob_path(@user.poa_attachment, disposition: "attachment") %></li>
-    <% else%>
-      <h3>You Can upload a power of attorney here:</h3>
-      <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file">Power Of Attorney File:</label> <%= file_field_tag :poa %>
-        <%= submit_tag %>
-      <% end %>
-    <% end%>
-  </ul>
-</section>
-
-<section class='birth_certificate'>
-<h2>Birth Certificate :</h2>
-  <ul>
-    <% if @user.birth_certificate.attached? %>
-      <p>You have <%= @user.birth_certificate.attachments.count %> Birth Certificate uploaded</p>
-        <li><%= link_to @user.birth_certificate.attachment.blob[:filename], rails_blob_path(@user.birth_certificate_attachment, disposition: "attachment") %></li>
-    <% else%>
-      <h3>You Can upload a birth certificate here:</h3>
-      <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file">Birth Certificate File:</label> <%= file_field_tag :birth_certificate %>
-        <%= submit_tag %>
-      <% end %>
-    <% end%>
-  </ul>
-</section>
-
-
-
-<section class='finance_records'>
-<h2>Financial Records:</h2>
-  <ul>
+  <div class="card">
+    <div class="card-header" id="headingFive">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+          Financial Records: (<%= @user.finance_records.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
     <% if @user.finance_records.attached? %>
     <p>You have <%= @user.finance_records.attachments.count %> financial files uploaded</p>
       <% @user.finance_records.attachments.each do |attachment| %>
       <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
       <% end %>
+      <% end %>
       <%= form_tag update_info_path, method: :put, multipart: :true do %>
       <label for="file">Financial Record File:</label> <%= file_field_tag :finance_records %>
       <%= submit_tag %>
     <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
 
-    <% else %>
-    <h3>You Can upload a you finance records here:</h3>
-    <%= form_tag update_info_path, method: :put, multipart: :true do %>
-      <label for="file">Financial Record File:</label> <%= file_field_tag :finance_records %>
-
+  <div class="card">
+    <div class="card-header" id="headingSix">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          Veterans Benefits: (<%= @user.va_benefits.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.va_benefits.attached? %>
+      <% @user.va_benefits.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload VA Information:</label> <%= file_field_tag :va_benefits %>
       <%= submit_tag %>
     <% end %>
-  <% end %>
   </ul>
-</section>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingSeven">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+          Employment Information: (<%= @user.employment_info.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.employment_info.attached? %>
+      <% @user.employment_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Employment Information:</label> <%= file_field_tag :employment_info %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingEight">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+          Life Insurance Information: (<%= @user.life_insurance.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.life_insurance.attached? %>
+      <% @user.life_insurance.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Life Insurance Information:</label> <%= file_field_tag :life_insurance %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingNine">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+          Social Security Information: (<%= @user.ss_info.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.ss_info.attached? %>
+      <% @user.ss_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Social Security Information:</label> <%= file_field_tag :ss_info %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTen">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+        Tax Information: (<%= @user.tax_info.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.tax_info.attached? %>
+      <% @user.tax_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Tax Information:</label> <%= file_field_tag :tax_info %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingEleven">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+        Obituray Information: (<%= @user.obituary.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.obituary.attached? %>
+      <% @user.obituary.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Obituary Information:</label> <%= file_field_tag :obituary %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingTwelve">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+        Last Wishes Information: (<%= @user.last_wishes.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.last_wishes.attached? %>
+      <% @user.last_wishes.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Last Wishes Information:</label> <%= file_field_tag :last_wishes %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingThirteen">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+        Funeral Information: (<%= @user.funeral_info.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.funeral_info.attached? %>
+      <% @user.funeral_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Funeral Information:</label> <%= file_field_tag :funeral_info %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingFourteen">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+        Pet Information: (<%= @user.pet_info.attachments.count %>)
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen" data-parent="#accordion">
+      <div class="card-body">
+      <ul>
+    <% if @user.pet_info.attached? %>
+      <% @user.pet_info.attachments.each do |attachment| %>
+      <li><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+      <% end %>
+      <% end %>
+      <%= form_tag update_info_path, method: :put, multipart: :true do %>
+      <label for="file">Upload Pet Information:</label> <%= file_field_tag :pet_info %>
+      <%= submit_tag %>
+    <% end %>
+  </ul>
+      </div>
+    </div>
+  </div>
+</div>
+

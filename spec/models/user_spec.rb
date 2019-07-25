@@ -44,8 +44,9 @@ RSpec.describe User do
                                 role: 0,
                                 user_id: user1.id)
 
-      contact_email = user1.find_primary_contact_email
-      expect(contact_email).to eq(contact1.email)
+      contact = user1.find_primary_contact
+      expect(contact).to be_an_instance_of Contact
+      expect(contact.email).to eq(contact1.email)
     end
   end
 end
