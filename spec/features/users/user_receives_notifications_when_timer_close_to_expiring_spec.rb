@@ -7,7 +7,6 @@ RSpec.describe 'As a user' do
       @user = create(:user)
       @dms = DeadManSwitch.create(user_id: @user.id, interval_in_seconds: 86401,\
         created_at: yesterday, updated_at: yesterday)
-      # require "pry"; binding.pry
     end
 
     it 'I receive a text message notification if it will expire within one day' do
