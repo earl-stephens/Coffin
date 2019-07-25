@@ -24,8 +24,9 @@ class DeadManSwitchController < ApplicationController
     @user.dead_man_switch.update(one_day_message_sent:  false)
     @user.dead_man_switch.save
     @user.dead_man_switch.update(one_hour_message_sent: false)
+
     @user.dead_man_switch.save
-    @updated_at = @user.dead_man_switch.updated_at.to_i
+
     data = {
       "updated_at": "#{@user.dead_man_switch.updated_at.to_i}",
       "interval": "#{@user.dead_man_switch.interval_in_seconds}",
@@ -42,11 +43,8 @@ class DeadManSwitchController < ApplicationController
     @switch = DeadManSwitch.find(@user.dead_man_switch.id)
     @switch.destroy
     flash[:message] = "Your switch has been cancelled."
-
     redirect_to profile_path(@user)
   end
-
-
 
   private
 

@@ -1,6 +1,8 @@
 <!-- app/views/users/show.html.erb -->
-<%= link_to 'Add Information', extra_info_path(current_user) %>
-
+</br>
+<p>Add important files such as your will, power of attorney and any other documents with the link below. These files will be generated in the report for your primary contact.</p>
+<h5><%= link_to 'Upload Files', extra_info_path(current_user) %> </h5>
+</br>
 <section class="profile-box">
   <h3>Dead Man Switch Timer</h3>
   <%= form_tag dead_man_switch_index_path, method: :post do  %>
@@ -11,7 +13,7 @@
   <%= submit_tag "Save" %>
   <% end %>
 </section>
-
+</br>
 <section class="profile-box">
   <h3>Contacts</h3>
   <% if @user.contacts.empty? %>
@@ -26,17 +28,44 @@
   <% end %>
   <%= link_to 'Add A Contact', new_profile_contact_path %>
 </section>
+</br>
+<section class="funeral-box">
+  <h3>Funeral Arrangements</h3>
+  <% if @user.funeral.nil? %>
+    <p>You made any funeral arrangements yet.<br/>
+    Add your arrangements in the link below.</p>
+    <%= link_to 'Add Funeral Arrangement', new_user_funeral_path(@user) %>
+  <% else %>
+    <ul>
+      <p>You have set arrangements with <%= @user.funeral.funeral_home_name %></br>
+      </p>
+  </ul>
+  <%= link_to 'Update your Funeral Arrangement', edit_user_funeral_path(@user, @funeral) %>
+  <% end %>
+</section>
 
 </br>
-<section class='organ_donor'>
-  <h2>Organ Donor</h2>
+<section class='update-profile'>
+<h3>Update Profile</h3>
     <%= form_for(@user) do |f| %>
-    <%= f.radio_button :organ_donor, 'true' %>
-    <%= f.label :organ_donor, 'Yes', :value => 'true' %>
-    <%= f.radio_button :organ_donor, 'false' %>
-    <%= f.label :organ_donor, 'No', :value => 'false' %></br>
-    <%= f.submit "Update" %>
-  <% end %>
+    <p>Organ Donor
+      <%= f.radio_button :organ_donor, 'true' %>
+      <%= f.label :organ_donor, 'Yes', :value => 'true' %>
+
+      <%= f.radio_button :organ_donor, 'false' %>
+      <%= f.label :organ_donor, 'No', :value => 'false' %>
+    </p>
+
+      <%= f.label :place_of_birth %>
+      <%= f.text_field :place_of_birth %>
+    </br>
+
+      <%= f.label :maiden_name %>
+      <%= f.text_field :maiden_name %>
+    </br>
+      <%= f.submit "Update" %>
+
+    <% end %>
 
     <!-- <input type="checkbox" checked data-toggle="toggle"> -->
 

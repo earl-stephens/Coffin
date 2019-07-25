@@ -23,6 +23,7 @@
       <% if current_user %>
       <li class="nav-item"><%= link_to 'Profile', profile_path, class: 'nav-link' %></li>
       <li class="nav-item"><%= link_to 'Dashboard', dashboard_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'My Report', report_path(current_user), class: 'nav-link' %></li>
       <% end %>
       <li class="nav-item"><%= link_to 'Logout', logout_path, class: 'nav-link' %></li>
     <% end %>

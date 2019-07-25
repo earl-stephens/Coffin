@@ -2,7 +2,11 @@ class ReportController < ApplicationController
  before_action :verified_contact
 
   def show
-    @user = Contact.find(params[:id]).user
+    if current_user
+      @user = current_user
+    else
+      @user = Contact.find(params[:id]).user
+    end
   end
 
   private
@@ -11,5 +15,4 @@ class ReportController < ApplicationController
     contact = Contact.find(params[:id])
     contact.verified
   end
-
 end
