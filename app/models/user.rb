@@ -32,9 +32,8 @@ class User < ApplicationRecord
   has_many_attached :pet_info
 
 
-  def find_primary_contact_email
-    contact = self.contacts.where(contacts: {role: 1})
-    contact[0].email
+  def find_primary_contact
+    self.contacts.find_by(role: 1)
   end
 
   def progress
