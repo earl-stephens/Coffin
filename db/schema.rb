@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_191139) do
+ActiveRecord::Schema.define(version: 2019_07_24_234959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,11 +81,9 @@ ActiveRecord::Schema.define(version: 2019_07_21_191139) do
   end
 
   create_table "funerals", force: :cascade do |t|
-    t.integer "burial_cremation"
     t.string "funeral_home_name"
     t.string "funeral_home_phone"
     t.string "funeral_home_address"
-    t.integer "type_of_service"
     t.boolean "plot_purchased", default: false
     t.boolean "coffin_or_urn_purchased", default: false
     t.boolean "package_purchased", default: false
@@ -93,6 +91,8 @@ ActiveRecord::Schema.define(version: 2019_07_21_191139) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "burial_cremation"
+    t.string "type_of_service"
     t.index ["user_id"], name: "index_funerals_on_user_id"
   end
 

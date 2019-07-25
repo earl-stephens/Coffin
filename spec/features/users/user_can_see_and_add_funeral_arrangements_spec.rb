@@ -32,14 +32,24 @@ RSpec.describe "As a user on the profile page" do
     choose('funeral[coffin_or_urn_purchased]', option: "true")
     find(:css, '#funeral_coffin_or_urn_purchased_true').click
 
+    choose('funeral[package_purchased]', option: "true")
+    find(:css, '#funeral_package_purchased_true').click
+
     choose('funeral[docs_or_contract_exist]', option: "true")
     find(:css, '#funeral_docs_or_contract_exist_true').click
 
     click_on 'Update'
 
     @user1.reload
-    binding.pry
+
     expect(@user1.funeral.burial_cremation).to eq('Cremation')
+    expect(@user1.funeral.type_of_service).to eq('Hindu')
+    expect(@user1.funeral.funeral_home_name).to eq("Morbid's Mortuary")
+    expect(@user1.funeral.funeral_home_phone).to eq('1-800-GO2-HELL')
+    expect(@user1.funeral.plot_purchased).to eq(true)
+    expect(@user1.funeral.coffin_or_urn_purchased).to eq(true)
+    expect(@user1.funeral.package_purchased).to eq(true)
+    expect(@user1.funeral.docs_or_contract_exist).to eq(true)
 
   end
 end

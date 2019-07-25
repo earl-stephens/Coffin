@@ -33,13 +33,14 @@
   <% if @user.funeral.nil? %>
     <p>You made any funeral arrangements yet.<br/>
     Add your arrangements in the link below.</p>
+    <%= link_to 'Add Funeral Arrangement', new_user_funeral_path(@user) %>
   <% else %>
     <ul>
       <p>You have set arrangements with <%= @user.funeral.funeral_home_name %></br>
       </p>
   </ul>
+  <%= link_to 'Update your Funeral Arrangement', new_user_funeral_path(@user) %>
   <% end %>
-  <%= link_to 'Add Funeral Arrangement', new_user_funeral_path(@user) %>
 </section>
 
 </br>
