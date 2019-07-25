@@ -44,9 +44,8 @@ Rails.application.routes.draw do
   resources :dead_man_switch, only: [:create, :update, :destroy]
 
   #funeral arrangement path
-  # resources :funeral, only: [:new, :create]
   resources :users do
-    resources :funerals, only: [:create, :new]
+    resources :funerals, only: [:create, :new, :edit, :update]
   end
 
   match '*path', to: 'application#four_oh_four', via: :all

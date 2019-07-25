@@ -11,7 +11,25 @@ class FuneralsController < ApplicationController
   def create
     @user = current_user
     @funeral = Funeral.new(funeral_params)
-    @funeral.user_id = @user.id
+    @funeral.update(user_id: @user.id)
+    if @funeral.save
+      flash[:message] = "Your funeral arrangement updates have been saved."
+      redirect_to profile_path
+    else
+      flash[:error] = @funeral.errors.full_messages
+      render :new
+    end
+  end
+
+  def edit
+    @user = current_user
+    @funeral = @user.funeral
+  end
+
+  def update
+    @user = current_user
+    @funeral ||= @user.funeral
+    @funeral.update(funeral_params)
     if @funeral.save
       flash[:message] = "Your funeral arrangement updates have been saved."
       redirect_to profile_path

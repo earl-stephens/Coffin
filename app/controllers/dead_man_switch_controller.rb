@@ -19,9 +19,14 @@ class DeadManSwitchController < ApplicationController
 
   def update
     @user = current_user
-    @user.dead_man_switch.touch
+    @user.dead_man_switch.update(updated_at: Time.now)
+    @user.dead_man_switch.save
     @user.dead_man_switch.update(one_day_message_sent:  false)
+    @user.dead_man_switch.save
     @user.dead_man_switch.update(one_hour_message_sent: false)
+
+    @user.dead_man_switch.save
+
     data = {
       "updated_at": "#{@user.dead_man_switch.updated_at.to_i}",
       "interval": "#{@user.dead_man_switch.interval_in_seconds}",
