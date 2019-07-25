@@ -1,17 +1,82 @@
 <!-- app/views/users/show.html.erb -->
-</br>
-<p>Add important files such as your will, power of attorney and any other documents with the link below. These files will be generated in the report for your primary contact.</p>
-<h5><%= link_to 'Upload Files', extra_info_path(current_user) %> </h5>
-</br>
 <section class="profile-box">
   <h3>Dead Man Switch Timer</h3>
-  <%= form_tag dead_man_switch_index_path, method: :post do  %>
-  <%= label_tag :dead_man_switch %>
-  <%= select_tag :interval, options_for_select(intervals) %>
-
-  <%= number_field_tag 'quantity', nil, min: 1 %>
-  <%= submit_tag "Save" %>
+  <% if current_user.dead_man_switch %>
+    <p>You're all set for now. Your current timer will expire on <%= current_user.dead_man_switch.expires_at_in_time.strftime('%B %-d, %Y')%></p>
+  <% else %>
+    <p>Click link below to add a timer.</p>
   <% end %>
+
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Set or Reset Dead Man Switch Timer
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <ul>
+            <% if @user.misc_files.attached? %>
+              <% @user.misc_files.attachments.each do |attachment| %>
+                <ul class="list-group">
+                  <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
+                </ul>
+              <% end %>
+            <% end %>
+            <div class="dead_man_switch_form">
+              <%= form_tag dead_man_switch_index_path, method: :post do  %>
+              <%= label_tag :dead_man_switch, "Timer Interval" %>
+              <%= number_field_tag 'quantity', nil, min: 1 %>
+              <%= select_tag :interval, options_for_select(intervals) %>
+              <%= submit_tag "Save" %>
+              <% end %>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</br>
+
+<section class="basic-info-box">
+<h3>Basic Info</h3>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item"><strong>First Name: </strong><%= @user.first_name%></li>
+  <li class="list-group-item"><strong>Last Name: </strong><%= @user.last_name%></li>
+  <li class="list-group-item"><strong>Email: </strong><%= @user.email%></li>
+  <li class="list-group-item"><strong>Address: </strong><%= @user.address%></li>
+</ul>
+  <%= link_to "Edit My Basic Info", edit_user_path(@user) %>
+</section>
+<section>
+  <ul class='update-profile list-group list-group-flush'>
+    </br>
+    <%= form_for(@user) do |f| %>
+    <li class="list-group-item">
+      <p>Organ Donor
+        <%= f.radio_button :organ_donor, 'true' %>
+        <%= f.label :organ_donor, 'Yes', :value => 'true' %>
+        <%= f.radio_button :organ_donor, 'false' %>
+        <%= f.label :organ_donor, 'No', :value => 'false' %>
+      </p>
+      <%= f.label :place_of_birth %>
+      <%= f.text_field :place_of_birth %>
+      </br>
+      <%= f.label :maiden_name %>
+      <%= f.text_field :maiden_name %>
+      </br>
+      <%= f.submit "Update" %>
+      <% end %>
+      </br>
+      <h3>Additonal Information (Will, Bank Accounts, Last Wishes, etc)</h3>
+       <p>Add important files such as your will, power of attorney and any other documents with the link below. These files will be generated in the report for your primary contact.</p>
+      <%= link_to 'Edit Additional Information', extra_info_path(current_user) %>
+    </ul>
+  </section>
+
 </section>
 </br>
 <section class="profile-box">
@@ -20,9 +85,9 @@
     <p>You haven't added any contacts yet.<br/>
     Add one using the link below and they'll be notified if your Dead Man Switch Timer expires.</p>
   <% else %>
-  <ul>
+  <ul class="list-group list-group-flush">
     <% @user.contacts.each do |contact| %>
-      <li><%= contact.first_name %> <%= contact.last_name %></li>
+      <li class="list-group-item"><%= contact.first_name %> <%= contact.last_name %></li>
     <% end %>
   </ul>
   <% end %>
@@ -42,32 +107,4 @@
   </ul>
   <%= link_to 'Update your Funeral Arrangement', edit_user_funeral_path(@user, @funeral) %>
   <% end %>
-</section>
-
-</br>
-<section class='update-profile'>
-<h3>Update Profile</h3>
-    <%= form_for(@user) do |f| %>
-    <p>Organ Donor
-      <%= f.radio_button :organ_donor, 'true' %>
-      <%= f.label :organ_donor, 'Yes', :value => 'true' %>
-
-      <%= f.radio_button :organ_donor, 'false' %>
-      <%= f.label :organ_donor, 'No', :value => 'false' %>
-    </p>
-
-      <%= f.label :place_of_birth %>
-      <%= f.text_field :place_of_birth %>
-    </br>
-
-      <%= f.label :maiden_name %>
-      <%= f.text_field :maiden_name %>
-    </br>
-      <%= f.submit "Update" %>
-
-    <% end %>
-
-    <!-- <input type="checkbox" checked data-toggle="toggle"> -->
-
-
 </section>
