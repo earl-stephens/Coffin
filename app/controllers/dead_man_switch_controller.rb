@@ -6,7 +6,7 @@ class DeadManSwitchController < ApplicationController
     @dead_man_switch = DeadManSwitch.find_or_create_by(user_id: @user.id)
     @dead_man_switch.update(interval_in_seconds: @length_of_time_for_switch)
     data = {
-      "updated_at": "#{@updated_at}",
+      "updated_at": "#{@dead_man_switch.updated_at.to_i}",
       "interval": "#{@user.dead_man_switch.interval_in_seconds}",
       "user_id": "#{@user.id}"
     }
@@ -14,7 +14,6 @@ class DeadManSwitchController < ApplicationController
     service_results(data)
     session[:time_difference] = service_results(data)[:time_difference]
     session[:formatted_date] = expiration_date
-    # flash[:message] = "Your Dead Man Switch has been created and will expire on #{expiration_date}."
     redirect_to notification_path
   end
 
@@ -22,22 +21,19 @@ class DeadManSwitchController < ApplicationController
     @user = current_user
     @user.dead_man_switch.update(updated_at: Time.now)
     @user.dead_man_switch.save
-    # binding.pry
     @user.dead_man_switch.update(one_day_message_sent:  false)
     @user.dead_man_switch.save
     @user.dead_man_switch.update(one_hour_message_sent: false)
     @user.dead_man_switch.save
     @updated_at = @user.dead_man_switch.updated_at.to_i
     data = {
-      "updated_at": "#{@updated_at}",
+      "updated_at": "#{@user.dead_man_switch.updated_at.to_i}",
       "interval": "#{@user.dead_man_switch.interval_in_seconds}",
       "user_id": "#{@user.id}"
     }
     data = data.to_json
     session[:time_difference] = service_results(data)[:time_difference]
     session[:formatted_date] = expiration_date
-    # binding.pry
-    # flash[:message] = "Your Dead Man Switch has been reset and will expire on #{expiration_date}."
     redirect_to notification_path
   end
 
