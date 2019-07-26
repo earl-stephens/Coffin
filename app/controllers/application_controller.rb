@@ -15,8 +15,9 @@ class ApplicationController < ActionController::Base
     render file: 'public/404', status: 404 unless current_user
   end
 
-  def four_oh_four
-    render file: 'public/404', status: 404
-  end
+  # def four_oh_four
+  #   require 'pry'; binding.pry
+  #   render file: 'public/404', status: 404
+  # end
 
 end
