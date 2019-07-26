@@ -33,4 +33,3 @@ coverage
 
 # Ignore storage.yml for S3 keys
 /config/storage.yml
-
