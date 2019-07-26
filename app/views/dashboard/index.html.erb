@@ -1,10 +1,16 @@
 <!-- app/views/dashboard/index.html.erb -->
+<br>
+<div class="card">
+  <div class="card-body text-center">
+    <h5 class="card-title text-center">Dead Man Switch Timer</h5>
+      <% if current_user.dead_man_switch %>
+        <h5>Your Dead Man Switch is set and will expire on <%= session[:formatted_date] %></h5>
 
-<h1>Dead Man Switch Timer</h1>
-<% if current_user.dead_man_switch %>
-  <h5>Your Dead Man Switch is set and will expire on <%= session[:formatted_date] %></h5>
-  <%= button_to "I'm Still Alive!", dead_man_switch_path(current_user), method: :patch %></br>
-  <%= button_to "Cancel Dead Man Switch", dead_man_switch_path(current_user), method: :delete %>
-<% else %>
-  <p>You haven't set a timer yet. Click <%= link_to 'here', profile_path %> to visit your profile and set a timer now.</p>
-<% end %>
+        <button type="button" class="btn btn-success"><%= link_to "I'm Still Alive!", dead_man_switch_path(current_user), method: :patch, style: 'color:#FFFFFF;' %></br></button>
+        <button type="button" class="btn btn-danger"><%= link_to "Cancel Dead Man Switch", dead_man_switch_path(current_user), method: :delete, style: 'color:#FFFFFF;'  %></button>
+
+      <% else %>
+        <h6 class="card-subtitle mb-2 text-muted text-center">You haven't set a timer yet. Click <%= link_to 'here', profile_path %> to visit your profile and set a timer now.</h6>
+      <% end %>
+  </div>
+</div>
