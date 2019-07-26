@@ -53,10 +53,10 @@
                 <li class="list-group-item"><%= link_to attachment.blob[:filename] , rails_blob_path(attachment, disposition: "attachment") %></li>
               </ul>
             <% end %>
+            <% end %>
             <%= form_tag update_info_path, method: :put, multipart: :true do %>
               <label for="file"></label><%= file_field_tag :wills %>
               <%= submit_tag 'Upload'%>
-            <% end %>
           <% end %>
         </ul>
       </div>
