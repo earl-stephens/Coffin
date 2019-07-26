@@ -1,13 +1,12 @@
 <h1 class="text-center">Welcome to Coffin</h1>
-<p class="text-center">"Every [person] dies. Not every [person] truly lives." - William Wallace</p>
+<br>
+<blockquote class="blockquote text-center">
+  <p class="mb-0">Every [person] dies. Not every [person] truly lives.</p>
+  <footer class="blockquote-footer">William Wallace</footer>
 <br>
 <% unless current_user %>
-  <div class="d-flex">
-    <ul class="list-inline mx-auto justify-content-center">
-      <li><div class="list-inline-item"><%= link_to 'Register using Google', auth_google_oauth2_path %></div></li>
-      <li><div class="list-inline-item"><%= link_to 'Login using Google', auth_google_oauth2_path %></div></li>
-    </ul>
-  </div>
+  <div class="d-inline-flex p-2 bd-highlight"><%= link_to 'Login using Google', auth_google_oauth2_path %></div>
+  <div class="d-inline-flex p-2 bd-highlight"><%= link_to 'Register using Google', auth_google_oauth2_path %></div>
 <% end %>
 <section id="work">
   <div class="container">

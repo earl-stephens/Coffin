@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe ContactNotifierMailer, type: :feature do
-  it "can send a notification email" do
+  xit "can send a notification email" do
     user1 = User.create!(first_name: 'John',
                         last_name: 'Doe',
                         email: 'johndoe@example.com',
@@ -39,7 +39,7 @@ RSpec.describe ContactNotifierMailer, type: :feature do
     expect(current_path).to eq(dashboard_path)
   end
 
-  it 'can send a notice of death' do
+  xit 'can send a notice of death' do
     user1 = User.create!(first_name: 'John',
                         last_name: 'Doe',
                         email: 'johndoe@example.com',

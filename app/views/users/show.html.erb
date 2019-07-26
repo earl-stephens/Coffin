@@ -1,63 +1,126 @@
 <!-- app/views/users/show.html.erb -->
-<section class="profile-box">
-  <h3>Dead Man Switch Timer</h3>
-  <% if current_user.dead_man_switch %>
-    <p>You're all set for now. Your current timer will expire on <%= current_user.dead_man_switch.expires_at_in_time.strftime('%B %-d, %Y')%></p>
-  <% else %>
-    <p>Click link below to add a timer.</p>
-  <% end %>
+    <br>
 
-  <div id="accordion">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Set or Reset Dead Man Switch Timer
-          </button>
-        </h5>
-      </div>
-      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <ul>
-            <div class="dead_man_switch_form">
-              <%= form_tag dead_man_switch_index_path, method: :post do  %>
-              <%= label_tag :dead_man_switch, "Timer Interval" %>
-              <%= number_field_tag 'quantity', nil, min: 1 %>
-              <%= select_tag :interval, options_for_select(intervals) %>
-              <%= submit_tag "Save" %>
-              <% end %>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Dead Man Switch Timer</h5>
+      <% if current_user.dead_man_switch %>
+        <h6 class="card-subtitle mb-2 text-muted">You're all set for now. Your current timer will expire on <%= current_user.dead_man_switch.expires_at_in_time.strftime('%B %-d, %Y')%></h6>
+        <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style='width'>
+                  Set or Reset Dead Man Switch Timer
+                </button>
+      <% else %>
+        <h6 class="card-subtitle mb-2 text-muted">Click link below to add a timer</h6>
+        <p>Add important files such as your will, power of attorney and any other documents with the link below. These files will be generated in the report for your primary contact.</p>
+        <br>
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">
+                <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style='width'>
+                  Set or Reset Dead Man Switch Timer
+                </button>
+              </h5>
             </div>
-          </ul>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <ul>
+                  <div class="dead_man_switch_form">
+                    <%= form_tag dead_man_switch_index_path, method: :post do  %>
+                    <%= label_tag :dead_man_switch, "Timer Interval" %>
+                    <%= number_field_tag 'quantity', nil, min: 1 %>
+                    <%= select_tag :interval, options_for_select(intervals) %>
+                    <%= submit_tag "Save" %>
+                    <% end %>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+    <% end% %>
   </div>
+</div>
+
 </br>
-<section class="profile-box">
-  <h3>Contacts</h3>
-  <% if @user.contacts.empty? %>
-  <p>You haven't added any contacts yet.<br/>
-    Add one using the link below and they'll be notified if your Dead Man Switch Timer expires.</p>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Contacts</h5>
+    <% if @user.contacts.empty? %>
+    <h6 class="card-subtitle mb-2 text-muted">You haven't added any contacts yet.<br/>
+    Add one using the link below and they'll be notified if your Dead Man Switch Timer expires.</h6>
     <% else %>
+    <h6 class="card-subtitle mb-2 text-muted">Your primary contact is special</h6>
     <ul class="list-group list-group-flush">
       <% @user.contacts.each do |contact| %>
-      <li class="list-group-item"><%= contact.first_name %> <%= contact.last_name %></li>
+        <% if contact.role == 'primary' %>
+            <li class="list-group-item"><span class="badge badge-primary">Primary</span>    <%= contact.first_name%> <%= contact.last_name %></li>
+          <% else %>
+            <li class="list-group-item"><span class="badge badge-secondary">Secondary</span>    <%= contact.first_name %> <%= contact.last_name %></li>
+          <% end %>
       <% end %>
     </ul>
+<br>
     <% end %>
-    <%= link_to 'Add A Contact', new_profile_contact_path %>
-  </section>
+    <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style='width'><%= link_to 'Add A Contact', new_profile_contact_path %></button>
+  </div>
+</div>
+
+<br>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Basic Information</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Here is your basic inormation</h6>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>First Name: </strong><%= @user.first_name%></li>
+      <li class="list-group-item"><strong>Last Name: </strong><%= @user.last_name%></li>
+      <li class="list-group-item"><strong>Email: </strong><%= @user.email%></li>
+      <li class="list-group-item"><strong>Address: </strong><%= @user.address%></li>
+    </ul>
+<br>
+    <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style='width'><%= link_to 'Edit', edit_user_path(@user) %></button>
+    
+  </div>
+</div>
+<br>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Additonal Information</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Will, Bank Accounts, Last Wishes, etc</h6>
+    <p>Add important files such as your will, power of attorney and any other documents with the link below. These files will be generated in the report for your primary contact.</p>
+    <br>
+
+
+    <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style='width'><%= link_to 'Edit Additional Information', extra_info_path(current_user) %></button>
+  </div>
+</div>
+
 </br>
-<section class="basic-info-box">
-<h3>Basic Info</h3>
-<ul class="list-group list-group-flush">
-  <li class="list-group-item"><strong>First Name: </strong><%= @user.first_name%></li>
-  <li class="list-group-item"><strong>Last Name: </strong><%= @user.last_name%></li>
-  <li class="list-group-item"><strong>Email: </strong><%= @user.email%></li>
-  <li class="list-group-item"><strong>Address: </strong><%= @user.address%></li>
-</ul>
-  <%= link_to "Edit My Basic Info", edit_user_path(@user) %>
-</section>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Funeral Arrangements<h5>
+      <% if @user.funeral.nil? %>
+        <h6 class="card-subtitle mb-2 text-muted">Add important files such as your will, power of attorney and any other documents with the link below. These files will be generated in the report for your primary contact.</h6>
+        <br>
+        <button type="button" class="btn btn-secondary"><%= link_to 'Add Funeral Arrangement', new_user_funeral_path(@user), style: 'color:#FFFFFF;' %></button>
+      <% else %>
+       <h6 class="card-subtitle mb-2 text-muted">Here is your current funeral inormation</h6>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Funeral Home: </strong><%= @user.funeral.funeral_home_name%></li>
+      <li class="list-group-item"><strong>Phone: </strong><%= @user.funeral.funeral_home_phone%></li>
+      <li class="list-group-item"><strong>Address: </strong><%= @user.funeral.funeral_home_address%></li>
+    </ul>
+    <br>
+        <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style='width'><%= link_to 'Update your Funeral Arrangement', edit_user_funeral_path(@user, @funeral) %></button>
+      <% end %>
+  </div>
+</div>
+
 <section>
   <ul class='update-profile list-group list-group-flush'>
     </br>
@@ -78,25 +141,6 @@
       <%= f.submit "Update" %>
       <% end %>
       </br>
-      <h3>Additonal Information (Will, Bank Accounts, Last Wishes, etc)</h3>
-       <p>Add important files such as your will, power of attorney and any other documents with the link below. These files will be generated in the report for your primary contact.</p>
-      <%= link_to 'Edit Additional Information', extra_info_path(current_user) %>
     </ul>
   </section>
-
-</section>
-</br>
-<section class="funeral-box">
-  <h3>Funeral Arrangements</h3>
-  <% if @user.funeral.nil? %>
-    <p>You made any funeral arrangements yet.<br/>
-    Add your arrangements in the link below.</p>
-    <%= link_to 'Add Funeral Arrangement', new_user_funeral_path(@user) %>
-  <% else %>
-    <ul>
-      <p>You have set arrangements with <%= @user.funeral.funeral_home_name %></br>
-      </p>
-  </ul>
-  <%= link_to 'Update your Funeral Arrangement', edit_user_funeral_path(@user, @funeral) %>
-  <% end %>
 </section>

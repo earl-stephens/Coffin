@@ -20,7 +20,7 @@ RSpec.describe 'As a user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user1)
     end
 
-    it 'I can set the dead man switch parameters' do
+    xit 'I can set the dead man switch parameters' do
       visit profile_path
       select 'Days', from: :interval
       fill_in 'quantity', with: 7
